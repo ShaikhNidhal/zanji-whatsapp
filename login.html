@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zanji - Merchant Onboarding & Sign In</title>
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Specific Login Layout Overrides */
+    .login-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .login-wrapper {
+        grid-template-columns: 1fr;
+        margin: 2rem auto;
+      }
+    }
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 1.5rem 0;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .qr-container {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .qr-label {
+      color: #0f172a;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-nav">
+    <div class="logo-container">
+      <div class="logo-icon">Z</div>
+      <div class="logo-text">
+        <h1>Zanji</h1>
+      </div>
+      <span class="logo-tag">Pakistan MVP</span>
+    </div>
+    
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      Social Commerce OS
+    </div>
+  </header>
+
+  <!-- Login Master Container -->
+  <div class="app-container" style="grid-template-columns: 1fr 400px; max-width: 1500px;">
+    
+    <!-- Left Workspace: Merchant Sign In -->
+    <main class="main-viewport" style="justify-content: center; padding: 3rem; min-height: 600px;">
+      
+      <div class="login-wrapper">
+        <!-- Brand intro & Form -->
+        <div>
+          <div style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent-primary); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+            <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i> Merchant Dashboard
+          </div>
+          <h2 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; background: linear-gradient(to right, #fff, #9ca3af); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+            Setup your storefront in 30 seconds
+          </h2>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;">
+            No password configurations or email sign-ups. Connect your WhatsApp and start managing catalogs, orders, and automated multi-channel queries.
+          </p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <i data-lucide="check" style="color: var(--accent-primary); width: 18px; height: 18px;"></i>
+              <span>WhatsApp Product Catalog (Max 20 Items Free)</span>
+            </div>
+            <div class="feature-item">
+              <i data-lucide="check" style="color: var(--accent-primary); width: 18px; height: 18px;"></i>
+              <span>Zero-Code Mobile checkout links</span>
+            </div>
+            <div class="feature-item">
+              <i data-lucide="check" style="color: var(--accent-primary); width: 18px; height: 18px;"></i>
+              <span>Automated abandoned cart recoveries</span>
+            </div>
+          </div>
+
+          <!-- Magic Link Login Form -->
+          <form onsubmit="handleMagicLinkRequest(event)" style="margin-top: 2rem;">
+            <div class="input-group">
+              <label for="m-phone" style="font-size: 0.85rem; font-weight: 600;">Registered WhatsApp Number</label>
+              <div style="display: flex; gap: 8px;">
+                <select id="m-country-code" class="input-control" style="width: 110px; padding: 10px; font-weight: 600; text-align: center; cursor: pointer; background: rgba(0,0,0,0.2);" onchange="updateLoginPhonePlaceholder(this.value)">
+                  <option value="92" selected>🇵🇰 +92</option>
+                  <option value="971">🇦🇪 +971</option>
+                  <option value="62">🇮🇩 +62</option>
+                  <option value="234">🇳🇬 +234</option>
+                  <option value="1">🇺🇸 +1</option>
+                </select>
+                <input type="tel" id="m-phone" class="input-control" required placeholder="300 1234567" style="flex: 1; height: 46px;">
+              </div>
+              <span style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; display: block;">Select your country code and enter your WhatsApp phone number.</span>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%; justify-content: center; height: 46px; font-size: 0.95rem;">
+              <i data-lucide="key-round"></i> Send Magic Sign-In Link
+            </button>
+          </form>
+        </div>
+
+        <!-- Desktop QR Login -->
+        <div style="text-align: center; border-left: 1px solid var(--border-color); padding-left: 2rem;">
+          <h4 style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; margin-bottom: 12px;">Desktop QR Quick Scan</h4>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.4;">
+            Scanning this code links your phone instantly. Replicates the "WhatsApp Web" secure session handshake.
+          </p>
+
+          <div class="qr-container">
+            <div style="width: 160px; height: 160px; background: url('https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://wa.me/923001234567?text=Verify_Zanji_Login_UUID_182749') no-repeat center; background-size: cover; border-radius: 6px;"></div>
+            <div class="qr-label">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-primary); animation: pulse 1.5s infinite"></span>
+              Scan with Phone Camera
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-sm" style="margin-top: 1.25rem; width: 100%; max-width: 200px;" onclick="simulateMerchantQrScan()">
+            <i data-lucide="scan-line"></i> Simulate QR Scan
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Right Panel - Phone View for Magic Link Delivery -->
+    <aside class="mobile-simulator">
+      <div class="mobile-inner">
+        <!-- Island Notch -->
+        <div class="phone-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="phone-status-bar">
+          <span id="simulator-time">20:05</span>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <i data-lucide="signal" style="width: 14px; height: 14px;"></i>
+            <i data-lucide="wifi" style="width: 14px; height: 14px;"></i>
+            <i data-lucide="battery" style="width: 16px; height: 16px;"></i>
+          </div>
+        </div>
+
+        <!-- WhatsApp Chat Header -->
+        <div class="wa-header" style="background: #202c33;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="chevron-left" style="width: 20px; height: 20px; color: #8696a0;"></i>
+            <div class="wa-avatar" style="background: var(--accent-primary); color: #fff;">Z</div>
+          </div>
+          <div class="wa-merchant-info">
+            <div class="wa-merchant-name" style="color: #fff;">
+              Zanji Business Portal
+              <svg class="wa-verified" viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-left: 2px;">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <div class="wa-merchant-status" style="color: #8696a0;">Verification Bot</div>
+          </div>
+          <div style="display: flex; gap: 12px; opacity: 0.85; color: #8696a0;">
+            <i data-lucide="more-vertical" style="width: 18px; height: 18px;"></i>
+          </div>
+        </div>
+
+        <!-- Chat Conversation Area -->
+        <div class="wa-body" id="wa-chat-body" style="background-color: #0b141a;">
+          <div style="text-align: center; color: var(--text-muted); font-size: 0.75rem; margin: 10px 0;">
+            Messages are secured with end-to-end encryption.
+          </div>
+        </div>
+
+        <!-- Chat Input Bar (Disabled for system bot) -->
+        <div class="wa-input-container">
+          <input type="text" class="wa-input-box" disabled placeholder="System Bot replies only..." style="background: rgba(255,255,255,0.05); color: var(--text-muted);">
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // System clock sync
+    const updateTime = () => {
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      document.getElementById('simulator-time').innerText = timeStr;
+    };
+    updateTime();
+    setInterval(updateTime, 60000);
+
+    // Initial bot greet
+    window.addEventListener('DOMContentLoaded', () => {
+      appendBotMessage("Welcome! 🌸 This is the official *Zanji Authentication Portal*.\n\nWhen you request a dashboard login on your computer, we will push your magic sign-in link here for security verification.");
+      lucide.createIcons();
+    });
+
+    function appendBotMessage(text, interactive = null) {
+      const body = document.getElementById('wa-chat-body');
+      const now = new Date();
+      const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'wa-message received';
+      bubble.style.background = '#202c33';
+      bubble.style.color = '#e9edef';
+      bubble.style.alignSelf = 'flex-start';
+      bubble.style.maxWidth = '80%';
+      bubble.style.padding = '8px 12px';
+      bubble.style.borderRadius = '8px';
+      bubble.style.borderTopLeftRadius = '0';
+      bubble.style.fontSize = '0.85rem';
+      bubble.style.position = 'relative';
+      bubble.style.animation = 'waMessageIn 0.25s ease-out';
+
+      bubble.innerHTML = `
+        <div>${text.replace(/\*(.*?)\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>')}</div>
+      `;
+
+      if (interactive) {
+        const card = document.createElement('div');
+        card.style.marginTop = '8px';
+        card.style.background = '#111b21';
+        card.style.border = '1px solid rgba(255,255,255,0.08)';
+        card.style.borderRadius = '8px';
+        card.style.overflow = 'hidden';
+        card.innerHTML = `
+          <div style="padding: 10px;">
+            <div style="font-weight: 600; font-size: 0.85rem; color: #fff;">Zanji Security Link</div>
+            <div style="font-size: 0.75rem; color: #8696a0; margin-top: 2px;">Expires in 5 minutes. Do not share this link.</div>
+          </div>
+          <a href="index.html" style="background: rgba(16,185,129,0.15); color: #00a884; display: block; text-align: center; padding: 8px 0; font-size: 0.8rem; font-weight: 600; text-decoration: none; border-top: 1px solid rgba(255,255,255,0.08);">
+            <i data-lucide="external-link" style="width: 12px; height: 12px; vertical-align: middle; margin-right: 4px; display: inline-block;"></i> ${interactive.label}
+          </a>
+        `;
+        bubble.appendChild(card);
+      }
+
+      const timeEl = document.createElement('span');
+      timeEl.className = 'wa-msg-time';
+      timeEl.style.display = 'block';
+      timeEl.style.textAlign = 'right';
+      timeEl.style.fontSize = '0.65rem';
+      timeEl.style.color = '#8696a0';
+      timeEl.style.marginTop = '4px';
+      timeEl.innerText = timeStr;
+      bubble.appendChild(timeEl);
+
+      body.appendChild(bubble);
+      body.scrollTop = body.scrollHeight;
+      lucide.createIcons();
+    }
+
+    // Update placeholders dynamically based on country selection
+    function updateLoginPhonePlaceholder(code) {
+      const input = document.getElementById('m-phone');
+      if (!input) return;
+      if (code === "92") input.placeholder = "300 1234567";
+      else if (code === "971") input.placeholder = "50 123 4567";
+      else if (code === "62") input.placeholder = "812 3456 789";
+      else if (code === "234") input.placeholder = "80 1234 5678";
+      else if (code === "1") input.placeholder = "202 555 0143";
+    }
+
+    // Handle form submit (Magic Link trigger)
+    function handleMagicLinkRequest(event) {
+      event.preventDefault();
+      const code = document.getElementById('m-country-code').value;
+      const num = document.getElementById('m-phone').value.replace(/\s+/g, '');
+
+      alert(`Magic Link requested for number +${code} ${num}! Watch the phone simulator on the right: the Zanji Authentication bot is delivering your access token.`);
+
+      setTimeout(() => {
+        appendBotMessage(`We detected a request to log into your merchant account (+${code} ${num}) from a desktop browser.\n\nClick below to securely sign into the Zari Boutique merchant portal:`, {
+          label: "Authenticate Dashboard Access"
+        });
+      }, 1000);
+    }
+
+    // Handle desktop QR scan shortcut
+    function simulateMerchantQrScan() {
+      alert("Simulating phone camera QR scan! The backend verifies the session ID over WebSocket and logs you into the dashboard instantly.");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

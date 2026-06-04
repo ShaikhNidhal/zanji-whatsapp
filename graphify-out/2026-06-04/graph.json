@@ -1,0 +1,1809 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "app.js",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L1",
+      "community": 5,
+      "norm_label": "app.js",
+      "id": "app"
+    },
+    {
+      "label": "RegionConfigs",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L2",
+      "community": 5,
+      "norm_label": "regionconfigs",
+      "id": "app_regionconfigs"
+    },
+    {
+      "label": "ZanjiState",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L11",
+      "community": 5,
+      "norm_label": "zanjistate",
+      "id": "app_zanjistate"
+    },
+    {
+      "label": "switchView()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L199",
+      "community": 0,
+      "norm_label": "switchview()",
+      "id": "app_switchview"
+    },
+    {
+      "label": "switchMerchantSection()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L218",
+      "community": 6,
+      "norm_label": "switchmerchantsection()",
+      "id": "app_switchmerchantsection"
+    },
+    {
+      "label": "openModal()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L246",
+      "community": 3,
+      "norm_label": "openmodal()",
+      "id": "app_openmodal"
+    },
+    {
+      "label": "closeModal()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L250",
+      "community": 4,
+      "norm_label": "closemodal()",
+      "id": "app_closemodal"
+    },
+    {
+      "label": "detectRegionByIp()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L255",
+      "community": 5,
+      "norm_label": "detectregionbyip()",
+      "id": "app_detectregionbyip"
+    },
+    {
+      "label": "changeGlobalRegion()",
+      "file_type": "code",
+      "source_file": "app.js",
+      "source_location": "L311",
+      "community": 5,
+      "norm_label": "changeglobalregion()",
+      "id": "app_changeglobalregion"
+    },
+    {
+      "label": "locales.js",
+      "file_type": "code",
+      "source_file": "locales.js",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "locales.js",
+      "id": "locales"
+    },
+    {
+      "label": "StorefrontLocales",
+      "file_type": "code",
+      "source_file": "locales.js",
+      "source_location": "L1",
+      "community": 8,
+      "norm_label": "storefrontlocales",
+      "id": "locales_storefrontlocales"
+    },
+    {
+      "label": "merchant.js",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L1",
+      "community": 3,
+      "norm_label": "merchant.js",
+      "id": "merchant"
+    },
+    {
+      "label": "initMerchant()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L7",
+      "community": 4,
+      "norm_label": "initmerchant()",
+      "id": "merchant_initmerchant"
+    },
+    {
+      "label": "calculateAnalytics()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L15",
+      "community": 7,
+      "norm_label": "calculateanalytics()",
+      "id": "merchant_calculateanalytics"
+    },
+    {
+      "label": "renderMerchantDashboard()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L35",
+      "community": 7,
+      "norm_label": "rendermerchantdashboard()",
+      "id": "merchant_rendermerchantdashboard"
+    },
+    {
+      "label": "renderAnalyticsChart()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L64",
+      "community": 3,
+      "norm_label": "renderanalyticschart()",
+      "id": "merchant_renderanalyticschart"
+    },
+    {
+      "label": "renderMerchantCatalog()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L131",
+      "community": 4,
+      "norm_label": "rendermerchantcatalog()",
+      "id": "merchant_rendermerchantcatalog"
+    },
+    {
+      "label": "renderMerchantOrders()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L160",
+      "community": 7,
+      "norm_label": "rendermerchantorders()",
+      "id": "merchant_rendermerchantorders"
+    },
+    {
+      "label": "generateMockAiDescription()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L205",
+      "community": 3,
+      "norm_label": "generatemockaidescription()",
+      "id": "merchant_generatemockaidescription"
+    },
+    {
+      "label": "handleNewProductSubmit()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L230",
+      "community": 4,
+      "norm_label": "handlenewproductsubmit()",
+      "id": "merchant_handlenewproductsubmit"
+    },
+    {
+      "label": "openOrderOperations()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L265",
+      "community": 3,
+      "norm_label": "openorderoperations()",
+      "id": "merchant_openorderoperations"
+    },
+    {
+      "label": "generateMockTracking()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L349",
+      "community": 3,
+      "norm_label": "generatemocktracking()",
+      "id": "merchant_generatemocktracking"
+    },
+    {
+      "label": "saveOrderOperations()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L355",
+      "community": 7,
+      "norm_label": "saveorderoperations()",
+      "id": "merchant_saveorderoperations"
+    },
+    {
+      "label": "renderBroadcastHistory()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L396",
+      "community": 4,
+      "norm_label": "renderbroadcasthistory()",
+      "id": "merchant_renderbroadcasthistory"
+    },
+    {
+      "label": "calculateSegmentSize()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L423",
+      "community": 3,
+      "norm_label": "calculatesegmentsize()",
+      "id": "merchant_calculatesegmentsize"
+    },
+    {
+      "label": "prefillBroadcast()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L432",
+      "community": 3,
+      "norm_label": "prefillbroadcast()",
+      "id": "merchant_prefillbroadcast"
+    },
+    {
+      "label": "handleBroadcastSubmit()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L457",
+      "community": 4,
+      "norm_label": "handlebroadcastsubmit()",
+      "id": "merchant_handlebroadcastsubmit"
+    },
+    {
+      "label": "renderMerchantInbox()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L505",
+      "community": 6,
+      "norm_label": "rendermerchantinbox()",
+      "id": "merchant_rendermerchantinbox"
+    },
+    {
+      "label": "selectInboxThread()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L598",
+      "community": 6,
+      "norm_label": "selectinboxthread()",
+      "id": "merchant_selectinboxthread"
+    },
+    {
+      "label": "sendInboxMerchantReply()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L606",
+      "community": 6,
+      "norm_label": "sendinboxmerchantreply()",
+      "id": "merchant_sendinboxmerchantreply"
+    },
+    {
+      "label": "handleInboxInputKey()",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "source_location": "L661",
+      "community": 6,
+      "norm_label": "handleinboxinputkey()",
+      "id": "merchant_handleinboxinputkey"
+    },
+    {
+      "label": "storefront.js",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L1",
+      "community": 0,
+      "norm_label": "storefront.js",
+      "id": "storefront"
+    },
+    {
+      "label": "initStorefront()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L5",
+      "community": 0,
+      "norm_label": "initstorefront()",
+      "id": "storefront_initstorefront"
+    },
+    {
+      "label": "changeStorefrontLanguage()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L26",
+      "community": 0,
+      "norm_label": "changestorefrontlanguage()",
+      "id": "storefront_changestorefrontlanguage"
+    },
+    {
+      "label": "renderStorefrontLoginGate()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L44",
+      "community": 0,
+      "norm_label": "renderstorefrontlogingate()",
+      "id": "storefront_renderstorefrontlogingate"
+    },
+    {
+      "label": "simulateQrScan()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L111",
+      "community": 0,
+      "norm_label": "simulateqrscan()",
+      "id": "storefront_simulateqrscan"
+    },
+    {
+      "label": "bypassLoginGate()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L127",
+      "community": 0,
+      "norm_label": "bypasslogingate()",
+      "id": "storefront_bypasslogingate"
+    },
+    {
+      "label": "renderStorefrontCatalog()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L134",
+      "community": 0,
+      "norm_label": "renderstorefrontcatalog()",
+      "id": "storefront_renderstorefrontcatalog"
+    },
+    {
+      "label": "addToStorefrontCart()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L213",
+      "community": 0,
+      "norm_label": "addtostorefrontcart()",
+      "id": "storefront_addtostorefrontcart"
+    },
+    {
+      "label": "PaymentDetailsMap",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L227",
+      "community": 0,
+      "norm_label": "paymentdetailsmap",
+      "id": "storefront_paymentdetailsmap"
+    },
+    {
+      "label": "renderCheckoutView()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L240",
+      "community": 0,
+      "norm_label": "rendercheckoutview()",
+      "id": "storefront_rendercheckoutview"
+    },
+    {
+      "label": "changeCartQty()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L412",
+      "community": 0,
+      "norm_label": "changecartqty()",
+      "id": "storefront_changecartqty"
+    },
+    {
+      "label": "selectPayment()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L425",
+      "community": 0,
+      "norm_label": "selectpayment()",
+      "id": "storefront_selectpayment"
+    },
+    {
+      "label": "handleCheckoutSubmit()",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "source_location": "L452",
+      "community": 0,
+      "norm_label": "handlecheckoutsubmit()",
+      "id": "storefront_handlecheckoutsubmit"
+    },
+    {
+      "label": "whatsapp.js",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L1",
+      "community": 1,
+      "norm_label": "whatsapp.js",
+      "id": "whatsapp"
+    },
+    {
+      "label": "initWhatsApp()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L5",
+      "community": 1,
+      "norm_label": "initwhatsapp()",
+      "id": "whatsapp_initwhatsapp"
+    },
+    {
+      "label": "renderWaMessages()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L11",
+      "community": 1,
+      "norm_label": "renderwamessages()",
+      "id": "whatsapp_renderwamessages"
+    },
+    {
+      "label": "renderWaChips()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L106",
+      "community": 1,
+      "norm_label": "renderwachips()",
+      "id": "whatsapp_renderwachips"
+    },
+    {
+      "label": "sendWaSuggestion()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L128",
+      "community": 1,
+      "norm_label": "sendwasuggestion()",
+      "id": "whatsapp_sendwasuggestion"
+    },
+    {
+      "label": "sendWaCustomerMessage()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L134",
+      "community": 1,
+      "norm_label": "sendwacustomermessage()",
+      "id": "whatsapp_sendwacustomermessage"
+    },
+    {
+      "label": "handleWaInputKey()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L146",
+      "community": 1,
+      "norm_label": "handlewainputkey()",
+      "id": "whatsapp_handlewainputkey"
+    },
+    {
+      "label": "appendWaMessage()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L153",
+      "community": 1,
+      "norm_label": "appendwamessage()",
+      "id": "whatsapp_appendwamessage"
+    },
+    {
+      "label": "normalizeChatInput()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L168",
+      "community": 1,
+      "norm_label": "normalizechatinput()",
+      "id": "whatsapp_normalizechatinput"
+    },
+    {
+      "label": "detectChatLanguage()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L193",
+      "community": 1,
+      "norm_label": "detectchatlanguage()",
+      "id": "whatsapp_detectchatlanguage"
+    },
+    {
+      "label": "ChatLocales",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L228",
+      "community": 1,
+      "norm_label": "chatlocales",
+      "id": "whatsapp_chatlocales"
+    },
+    {
+      "label": "processBotReply()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L424",
+      "community": 1,
+      "norm_label": "processbotreply()",
+      "id": "whatsapp_processbotreply"
+    },
+    {
+      "label": "openDirectCheckoutFromWa()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L550",
+      "community": 0,
+      "norm_label": "opendirectcheckoutfromwa()",
+      "id": "whatsapp_opendirectcheckoutfromwa"
+    },
+    {
+      "label": "executeWaAuthLink()",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "source_location": "L565",
+      "community": 0,
+      "norm_label": "executewaauthlink()",
+      "id": "whatsapp_executewaauthlink"
+    },
+    {
+      "label": "Zanji Merchant Portal & Storefront",
+      "file_type": "code",
+      "source_file": "index.html",
+      "community": 2,
+      "norm_label": "zanji merchant portal & storefront",
+      "id": "index_html"
+    },
+    {
+      "label": "Zanji Merchant Onboarding",
+      "file_type": "code",
+      "source_file": "login.html",
+      "community": 2,
+      "norm_label": "zanji merchant onboarding",
+      "id": "login_html"
+    },
+    {
+      "label": "Global Stylesheet",
+      "file_type": "code",
+      "source_file": "style.css",
+      "community": 2,
+      "norm_label": "global stylesheet",
+      "id": "style_css"
+    },
+    {
+      "label": "Application Logic",
+      "file_type": "code",
+      "source_file": "app.js",
+      "community": 2,
+      "norm_label": "application logic",
+      "id": "app_js"
+    },
+    {
+      "label": "Merchant Portal Logic",
+      "file_type": "code",
+      "source_file": "merchant.js",
+      "community": 2,
+      "norm_label": "merchant portal logic",
+      "id": "merchant_js"
+    },
+    {
+      "label": "Customer Storefront Logic",
+      "file_type": "code",
+      "source_file": "storefront.js",
+      "community": 2,
+      "norm_label": "customer storefront logic",
+      "id": "storefront_js"
+    },
+    {
+      "label": "WhatsApp Simulator Logic",
+      "file_type": "code",
+      "source_file": "whatsapp.js",
+      "community": 2,
+      "norm_label": "whatsapp simulator logic",
+      "id": "whatsapp_js"
+    },
+    {
+      "label": "Lucide Icons Library",
+      "file_type": "code",
+      "source_url": "https://unpkg.com/lucide@latest",
+      "community": 2,
+      "norm_label": "lucide icons library",
+      "id": "lucide_icons"
+    },
+    {
+      "label": "QR Code Generation API",
+      "file_type": "code",
+      "source_url": "https://api.qrserver.com/v1/create-qr-code/",
+      "community": 2,
+      "norm_label": "qr code generation api",
+      "id": "qr_server_api"
+    },
+    {
+      "label": "Merchant Dashboard Section",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "community": 2,
+      "norm_label": "merchant dashboard section",
+      "id": "merchant_dashboard"
+    },
+    {
+      "label": "Catalog Manager Section",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "community": 2,
+      "norm_label": "catalog manager section",
+      "id": "catalog_manager"
+    },
+    {
+      "label": "Unified Multi-Channel Inbox",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "community": 2,
+      "norm_label": "unified multi-channel inbox",
+      "id": "unified_inbox"
+    },
+    {
+      "label": "WhatsApp Mobile Simulator",
+      "file_type": "concept",
+      "source_file": "index.html",
+      "community": 2,
+      "norm_label": "whatsapp mobile simulator",
+      "id": "whatsapp_simulator"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L277",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_changeglobalregion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L249",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_closemodal"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L255",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_detectregionbyip"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L245",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_openmodal"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_regionconfigs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L217",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_switchmerchantsection"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L198",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_switchview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app",
+      "target": "app_zanjistate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L211",
+      "weight": 1.0,
+      "source": "app_switchview",
+      "target": "merchant_initmerchant"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L209",
+      "weight": 1.0,
+      "source": "app_switchview",
+      "target": "storefront_initstorefront"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "whatsapp.js",
+      "source_location": "L567",
+      "weight": 1.0,
+      "source": "whatsapp_executewaauthlink",
+      "target": "app_switchview"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "whatsapp.js",
+      "source_location": "L551",
+      "weight": 1.0,
+      "source": "whatsapp_opendirectcheckoutfromwa",
+      "target": "app_switchview"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L238",
+      "weight": 1.0,
+      "source": "app_switchmerchantsection",
+      "target": "merchant_rendermerchantinbox"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L345",
+      "weight": 1.0,
+      "source": "merchant_openorderoperations",
+      "target": "app_openmodal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L433",
+      "weight": 1.0,
+      "source": "merchant_prefillbroadcast",
+      "target": "app_openmodal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L481",
+      "weight": 1.0,
+      "source": "merchant_handlebroadcastsubmit",
+      "target": "app_closemodal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L250",
+      "weight": 1.0,
+      "source": "merchant_handlenewproductsubmit",
+      "target": "app_closemodal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L369",
+      "weight": 1.0,
+      "source": "merchant_saveorderoperations",
+      "target": "app_closemodal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app.js",
+      "source_location": "L271",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "app_detectregionbyip",
+      "target": "app_changeglobalregion"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L299",
+      "weight": 1.0,
+      "source": "app_changeglobalregion",
+      "target": "merchant_initmerchant"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L300",
+      "weight": 1.0,
+      "source": "app_changeglobalregion",
+      "target": "storefront_initstorefront"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app.js",
+      "source_location": "L298",
+      "weight": 1.0,
+      "source": "app_changeglobalregion",
+      "target": "whatsapp_initwhatsapp"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "locales.js",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "locales",
+      "target": "locales_storefrontlocales"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_calculateanalytics"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L423",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_calculatesegmentsize"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L205",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_generatemockaidescription"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L349",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_generatemocktracking"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L457",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_handlebroadcastsubmit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L661",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_handleinboxinputkey"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L230",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_handlenewproductsubmit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_initmerchant"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L265",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_openorderoperations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L432",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_prefillbroadcast"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_renderanalyticschart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L396",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_renderbroadcasthistory"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L131",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_rendermerchantcatalog"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_rendermerchantdashboard"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L505",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_rendermerchantinbox"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L160",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_rendermerchantorders"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L355",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_saveorderoperations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L598",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_selectinboxthread"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L606",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant",
+      "target": "merchant_sendinboxmerchantreply"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_initmerchant",
+      "target": "merchant_renderbroadcasthistory"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_initmerchant",
+      "target": "merchant_rendermerchantcatalog"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_initmerchant",
+      "target": "merchant_rendermerchantdashboard"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_initmerchant",
+      "target": "merchant_rendermerchantorders"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_rendermerchantdashboard",
+      "target": "merchant_calculateanalytics"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L371",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_saveorderoperations",
+      "target": "merchant_rendermerchantdashboard"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L256",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_handlenewproductsubmit",
+      "target": "merchant_rendermerchantcatalog"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L370",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_saveorderoperations",
+      "target": "merchant_rendermerchantorders"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L261",
+      "weight": 1.0,
+      "source": "merchant_handlenewproductsubmit",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L335",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_openorderoperations",
+      "target": "merchant_generatemocktracking"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L484",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_handlebroadcastsubmit",
+      "target": "merchant_renderbroadcasthistory"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L453",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_prefillbroadcast",
+      "target": "merchant_calculatesegmentsize"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L603",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_selectinboxthread",
+      "target": "merchant_rendermerchantinbox"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L631",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_sendinboxmerchantreply",
+      "target": "merchant_rendermerchantinbox"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "merchant.js",
+      "source_location": "L663",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "merchant_handleinboxinputkey",
+      "target": "merchant_sendinboxmerchantreply"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "merchant.js",
+      "source_location": "L628",
+      "weight": 1.0,
+      "source": "merchant_sendinboxmerchantreply",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L213",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_addtostorefrontcart"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L127",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_bypasslogingate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L411",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_changecartqty"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_changestorefrontlanguage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L451",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_handlecheckoutsubmit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_initstorefront"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L227",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_paymentdetailsmap"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L240",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_rendercheckoutview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L134",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_renderstorefrontcatalog"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_renderstorefrontlogingate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L424",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_selectpayment"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront",
+      "target": "storefront_simulateqrscan"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_changestorefrontlanguage",
+      "target": "storefront_initstorefront"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_initstorefront",
+      "target": "storefront_renderstorefrontcatalog"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_initstorefront",
+      "target": "storefront_renderstorefrontlogingate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "whatsapp.js",
+      "source_location": "L558",
+      "weight": 1.0,
+      "source": "whatsapp_opendirectcheckoutfromwa",
+      "target": "storefront_initstorefront"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "storefront.js",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "storefront_simulateqrscan",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_bypasslogingate",
+      "target": "storefront_renderstorefrontcatalog"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L224",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_addtostorefrontcart",
+      "target": "storefront_renderstorefrontcatalog"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "storefront.js",
+      "source_location": "L420",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "storefront_changecartqty",
+      "target": "storefront_rendercheckoutview"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "whatsapp.js",
+      "source_location": "L561",
+      "weight": 1.0,
+      "source": "whatsapp_opendirectcheckoutfromwa",
+      "target": "storefront_rendercheckoutview"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L153",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L228",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_chatlocales"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L193",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_detectchatlanguage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L565",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_executewaauthlink"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L146",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_handlewainputkey"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_initwhatsapp"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L168",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_normalizechatinput"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L550",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_opendirectcheckoutfromwa"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L424",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_processbotreply"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L106",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_renderwachips"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_renderwamessages"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L134",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_sendwacustomermessage"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L128",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp",
+      "target": "whatsapp_sendwasuggestion"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_initwhatsapp",
+      "target": "whatsapp_renderwachips"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_initwhatsapp",
+      "target": "whatsapp_renderwamessages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L164",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_appendwamessage",
+      "target": "whatsapp_renderwamessages"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_sendwasuggestion",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L130",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_sendwasuggestion",
+      "target": "whatsapp_processbotreply"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L148",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_handlewainputkey",
+      "target": "whatsapp_sendwacustomermessage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_sendwacustomermessage",
+      "target": "whatsapp_appendwamessage"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L143",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_sendwacustomermessage",
+      "target": "whatsapp_processbotreply"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L426",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_processbotreply",
+      "target": "whatsapp_normalizechatinput"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "whatsapp.js",
+      "source_location": "L427",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "whatsapp_processbotreply",
+      "target": "whatsapp_detectchatlanguage"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "app_js"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "catalog_manager"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "lucide_icons"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "merchant_dashboard"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "merchant_js"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "storefront_js"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "style_css"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "unified_inbox"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "whatsapp_js"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "index.html",
+      "source": "index_html",
+      "target": "whatsapp_simulator"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "login.html",
+      "source": "login_html",
+      "target": "index_html"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "login.html",
+      "source": "login_html",
+      "target": "qr_server_api"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "login.html",
+      "source": "login_html",
+      "target": "whatsapp_simulator"
+    }
+  ],
+  "hyperedges": []
+}

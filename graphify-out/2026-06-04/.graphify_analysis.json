@@ -1,0 +1,213 @@
+{
+  "communities": {
+    "0": [
+      "storefront",
+      "storefront_addtostorefrontcart",
+      "storefront_bypasslogingate",
+      "storefront_changecartqty",
+      "storefront_changestorefrontlanguage",
+      "storefront_handlecheckoutsubmit",
+      "storefront_initstorefront",
+      "storefront_paymentdetailsmap",
+      "storefront_rendercheckoutview",
+      "storefront_renderstorefrontcatalog",
+      "storefront_renderstorefrontlogingate",
+      "storefront_selectpayment",
+      "storefront_simulateqrscan",
+      "whatsapp_opendirectcheckoutfromwa"
+    ],
+    "1": [
+      "app_changeglobalregion",
+      "whatsapp",
+      "whatsapp_appendwamessage",
+      "whatsapp_chatlocales",
+      "whatsapp_detectchatlanguage",
+      "whatsapp_handlewainputkey",
+      "whatsapp_initwhatsapp",
+      "whatsapp_normalizechatinput",
+      "whatsapp_processbotreply",
+      "whatsapp_renderwachips",
+      "whatsapp_renderwamessages",
+      "whatsapp_sendwacustomermessage",
+      "whatsapp_sendwasuggestion"
+    ],
+    "2": [
+      "app_js",
+      "catalog_manager",
+      "index_html",
+      "login_html",
+      "lucide_icons",
+      "merchant_dashboard",
+      "merchant_js",
+      "qr_server_api",
+      "storefront_js",
+      "style_css",
+      "unified_inbox",
+      "whatsapp_js",
+      "whatsapp_simulator"
+    ],
+    "3": [
+      "app",
+      "app_regionconfigs",
+      "app_switchmerchantsection",
+      "app_switchview",
+      "app_zanjistate",
+      "merchant_handleinboxinputkey",
+      "merchant_rendermerchantinbox",
+      "merchant_selectinboxthread",
+      "merchant_sendinboxmerchantreply",
+      "whatsapp_executewaauthlink"
+    ],
+    "4": [
+      "app_openmodal",
+      "merchant",
+      "merchant_calculatesegmentsize",
+      "merchant_generatemockaidescription",
+      "merchant_generatemocktracking",
+      "merchant_openorderoperations",
+      "merchant_prefillbroadcast",
+      "merchant_renderanalyticschart"
+    ],
+    "5": [
+      "app_closemodal",
+      "merchant_handlebroadcastsubmit",
+      "merchant_handlenewproductsubmit",
+      "merchant_initmerchant",
+      "merchant_renderbroadcasthistory",
+      "merchant_rendermerchantcatalog"
+    ],
+    "6": [
+      "merchant_calculateanalytics",
+      "merchant_rendermerchantdashboard",
+      "merchant_rendermerchantorders",
+      "merchant_saveorderoperations"
+    ],
+    "7": [
+      "locales",
+      "locales_storefrontlocales"
+    ]
+  },
+  "cohesion": {
+    "0": 0.21978021978021978,
+    "1": 0.28205128205128205,
+    "2": 0.16666666666666666,
+    "3": 0.2,
+    "4": 0.35714285714285715,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 1.0
+  },
+  "gods": [
+    {
+      "id": "index_html",
+      "label": "Zanji Merchant Portal & Storefront",
+      "degree": 11
+    },
+    {
+      "id": "merchant_initmerchant",
+      "label": "initMerchant()",
+      "degree": 7
+    },
+    {
+      "id": "storefront_initstorefront",
+      "label": "initStorefront()",
+      "degree": 7
+    },
+    {
+      "id": "whatsapp_appendwamessage",
+      "label": "appendWaMessage()",
+      "degree": 7
+    },
+    {
+      "id": "app_switchview",
+      "label": "switchView()",
+      "degree": 5
+    },
+    {
+      "id": "whatsapp_processbotreply",
+      "label": "processBotReply()",
+      "degree": 5
+    },
+    {
+      "id": "app_closemodal",
+      "label": "closeModal()",
+      "degree": 4
+    },
+    {
+      "id": "app_changeglobalregion",
+      "label": "changeGlobalRegion()",
+      "degree": 4
+    },
+    {
+      "id": "merchant_rendermerchantdashboard",
+      "label": "renderMerchantDashboard()",
+      "degree": 4
+    },
+    {
+      "id": "merchant_handlenewproductsubmit",
+      "label": "handleNewProductSubmit()",
+      "degree": 4
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Zanji Merchant Portal & Storefront",
+      "target": "Application Logic",
+      "source_files": [
+        "index.html",
+        "app.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories; peripheral node `Application Logic` unexpectedly reaches hub `Zanji Merchant Portal & Storefront`"
+    },
+    {
+      "source": "Zanji Merchant Portal & Storefront",
+      "target": "Merchant Portal Logic",
+      "source_files": [
+        "index.html",
+        "merchant.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories; peripheral node `Merchant Portal Logic` unexpectedly reaches hub `Zanji Merchant Portal & Storefront`"
+    },
+    {
+      "source": "Zanji Merchant Portal & Storefront",
+      "target": "Customer Storefront Logic",
+      "source_files": [
+        "index.html",
+        "storefront.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories; peripheral node `Customer Storefront Logic` unexpectedly reaches hub `Zanji Merchant Portal & Storefront`"
+    },
+    {
+      "source": "Zanji Merchant Portal & Storefront",
+      "target": "WhatsApp Simulator Logic",
+      "source_files": [
+        "index.html",
+        "whatsapp.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 code); connects across different repos/directories; peripheral node `WhatsApp Simulator Logic` unexpectedly reaches hub `Zanji Merchant Portal & Storefront`"
+    },
+    {
+      "source": "simulateQrScan()",
+      "target": "appendWaMessage()",
+      "source_files": [
+        "storefront.js",
+        "whatsapp.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities; peripheral node `simulateQrScan()` unexpectedly reaches hub `appendWaMessage()`"
+    }
+  ],
+  "tokens": {
+    "input": 10307,
+    "output": 1600
+  }
+}

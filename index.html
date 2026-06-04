@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zanji - WhatsApp-First Social Commerce Operating System</title>
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2.2">
+  <!-- Lucide Icons (via CDN) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-nav">
+    <div class="logo-container">
+      <div class="logo-icon">Z</div>
+      <div class="logo-text">
+        <h1>Zanji</h1>
+      </div>
+      <span class="logo-tag">Pakistan MVP</span>
+    </div>
+    
+    <div class="view-selector">
+      <button class="view-btn active" id="btn-merchant-view" onclick="switchView('merchant')">
+        <i data-lucide="layout-dashboard"></i> Merchant Portal
+      </button>
+      <button class="view-btn" id="btn-storefront-view" onclick="switchView('storefront')">
+        <i data-lucide="shopping-bag"></i> Customer Storefront
+      </button>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 1.25rem;">
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary);">
+        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 8px var(--accent-primary)"></span>
+        Offline Sync Active
+      </div>
+      <select id="region-selector" class="input-control" style="width: auto; padding: 4px 10px; font-size: 0.8rem; background: rgba(0,0,0,0.3); border-color: var(--border-color); color: var(--text-primary); cursor: pointer;" onchange="changeGlobalRegion(this.value)">
+        <option value="PK">Pakistan (PKR)</option>
+        <option value="AE">UAE / MENA (AED)</option>
+        <option value="ID">Indonesia (IDR)</option>
+        <option value="NG">Nigeria (NGN)</option>
+        <option value="GL">Global / Other Countries (USD)</option>
+      </select>
+      <a href="login.html" style="color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 500;" onmouseover="this.style.color='var(--accent-danger)'" onmouseout="this.style.color='var(--text-muted)'">
+        <i data-lucide="log-out" style="width: 14px; height: 14px;"></i> Sign Out
+      </a>
+    </div>
+  </header>
+
+  <!-- Master Layout Grid -->
+  <div class="app-container">
+    
+    <!-- Left/Center Main Panel (Swaps between Merchant Portal & Storefront Checkout) -->
+    <main class="main-viewport">
+      
+      <!-- MERCHANT TAB -->
+      <section id="merchant-tab" class="tab-content active">
+        <div class="merchant-layout">
+          <!-- Merchant Sub-Nav -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
+            <div style="display: flex; gap: 1.5rem;">
+              <a href="#" class="merchant-nav-link active" onclick="switchMerchantSection('dashboard')">Dashboard</a>
+              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('catalog')">Catalog Manager</a>
+              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('orders')">Order Manager</a>
+              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('broadcast')">Broadcast Marketing</a>
+              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('inbox')">Unified Inbox</a>
+              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('settings')">Settings & Billing</a>
+            </div>
+            <div style="color: var(--text-muted); font-size: 0.85rem;" id="merchant-number-display">
+              Connected Number: <strong>+92 300 1234567</strong>
+            </div>
+          </div>
+
+          <!-- Section: Dashboard / Analytics -->
+          <div id="merchant-sec-dashboard" class="merchant-section">
+            <div class="analytics-grid" style="margin-bottom: 2rem;">
+              <div class="stat-card">
+                <div class="stat-header">
+                  <span>Gross Sales (PKR)</span>
+                  <div class="stat-icon green"><i data-lucide="banknote"></i></div>
+                </div>
+                <div class="stat-value" id="stat-sales">PKR 142,500</div>
+                <div class="stat-delta up">
+                  <i data-lucide="trending-up"></i> +18.4% this week
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-header">
+                  <span>Total Orders</span>
+                  <div class="stat-icon blue"><i data-lucide="shopping-cart"></i></div>
+                </div>
+                <div class="stat-value" id="stat-orders">38</div>
+                <div class="stat-delta up">
+                  <i data-lucide="trending-up"></i> +8.2% vs last week
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-header">
+                  <span>Cart Abandonment</span>
+                  <div class="stat-icon purple"><i data-lucide="shopping-bag"></i></div>
+                </div>
+                <div class="stat-value" id="stat-abandonment">42.5%</div>
+                <div class="stat-delta down" style="color: var(--accent-primary);">
+                  <i data-lucide="trending-down"></i> -12.4% (Zanji Autorecovery)
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-header">
+                  <span>Conversion Rate</span>
+                  <div class="stat-icon orange"><i data-lucide="percent"></i></div>
+                </div>
+                <div class="stat-value" id="stat-conversion">24.8%</div>
+                <div class="stat-delta up">
+                  <i data-lucide="trending-up"></i> +4.5% vs average
+                </div>
+              </div>
+            </div>
+
+            <!-- Charts and Recent Activity -->
+            <div class="dashboard-details">
+              <!-- Visual Chart -->
+              <div class="panel-card">
+                <div class="panel-card-title">
+                  <span>Sales & Conversion Funnel</span>
+                  <div style="font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">Last 7 Days</div>
+                </div>
+                <div class="chart-container">
+                  <canvas id="salesChart"></canvas>
+                </div>
+              </div>
+
+              <!-- Top Products -->
+              <div class="panel-card">
+                <div class="panel-card-title">Top Products</div>
+                <div style="display: flex; flex-direction: column; gap: 1rem;" id="top-products-list">
+                  <!-- Loaded dynamically in app.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Catalog Manager -->
+          <div id="merchant-sec-catalog" class="merchant-section" style="display: none;">
+            <div class="catalog-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Product Catalog</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Manage items listed in your WhatsApp Catalog</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn btn-secondary btn-sm" onclick="openModal('instagram-import-modal')">
+                  <i data-lucide="instagram" style="color: var(--accent-danger); width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Import from Instagram
+                </button>
+                <button class="btn btn-sm" onclick="openModal('add-product-modal')">
+                  <i data-lucide="plus"></i> Add New Product
+                </button>
+              </div>
+            </div>
+            
+            <div class="catalog-grid" id="catalog-products-grid">
+              <!-- Loaded dynamically in app.js -->
+            </div>
+          </div>
+
+          <!-- Section: Order Manager -->
+          <div id="merchant-sec-orders" class="merchant-section" style="display: none;">
+            <div class="catalog-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Manage Orders</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Track sales, shipping status, and update buyers via WhatsApp auto-notifications</p>
+              </div>
+            </div>
+
+            <div class="order-list" id="order-manager-list">
+              <!-- Loaded dynamically in app.js -->
+            </div>
+          </div>
+
+          <!-- Section: Broadcast Marketing -->
+          <div id="merchant-sec-broadcast" class="merchant-section" style="display: none;">
+            <div class="catalog-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Broadcast Marketing</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Send targeted WhatsApp updates & campaigns directly to customer groups</p>
+              </div>
+              <button class="btn btn-sm" onclick="openModal('create-broadcast-modal')">
+                <i data-lucide="megaphone"></i> New Broadcast
+              </button>
+            </div>
+
+            <div class="broadcast-grid">
+              <!-- Active campaigns details -->
+              <div class="panel-card">
+                <div class="panel-card-title">Quick Campaigns & Broadcast Templates</div>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                  <div class="stat-card" style="cursor: pointer; background: rgba(16,185,129,0.05)" onclick="prefillBroadcast('abandoned')">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Abandoned Cart Recovery</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Trigger automated follow-ups to customers who left items in their checkout cart.</p>
+                    <span style="font-size: 0.75rem; color: var(--accent-primary); font-weight: 600;">Average success: 22% recovery rate</span>
+                  </div>
+                  <div class="stat-card" style="cursor: pointer;" onclick="prefillBroadcast('eid')">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Eid Mubarak Discount Campaign</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Send a greeting with a 15% off link to all past active buyers in Pakistan.</p>
+                    <span style="font-size: 0.75rem; color: var(--accent-purple); font-weight: 600;">Targets: 142 customer numbers</span>
+                  </div>
+                  <div class="stat-card" style="cursor: pointer;" onclick="prefillBroadcast('new')">
+                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">New Arrival Broadcast</h4>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Announce new lawn collection patterns to VIP repeating buyers.</p>
+                    <span style="font-size: 0.75rem; color: var(--accent-secondary); font-weight: 600;">Broadcast catalog cards in chat</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Past campaigns log -->
+              <div class="panel-card">
+                <div class="panel-card-title">Campaign Logs</div>
+                <div class="broadcast-history" id="broadcast-history-list">
+                  <!-- Loaded dynamically in app.js -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Unified Inbox -->
+          <div id="merchant-sec-inbox" class="merchant-section" style="display: none;">
+            <div class="catalog-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Unified Multi-Channel Inbox</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Manage conversations across WhatsApp, Instagram, and Messenger in one screen</p>
+              </div>
+            </div>
+
+            <div class="inbox-layout" style="display: flex; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: rgba(0,0,0,0.2); height: 500px; overflow: hidden;">
+              <!-- Threads list (Left) -->
+              <div class="inbox-threads-list" id="inbox-threads-container" style="width: 300px; border-right: 1px solid var(--border-color); overflow-y: auto; display: flex; flex-direction: column;">
+                <!-- Loaded dynamically in merchant.js -->
+              </div>
+              
+              <!-- Chat thread detailed log (Right) -->
+              <div class="inbox-active-thread" style="flex: 1; display: flex; flex-direction: column; height: 100%;">
+                <!-- Header -->
+                <div class="inbox-thread-header" id="inbox-thread-header-details" style="padding: 12px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.01);">
+                  <!-- Loaded dynamically in merchant.js -->
+                </div>
+                <!-- Messages -->
+                <div class="inbox-thread-body" id="inbox-thread-messages-body" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: rgba(0,0,0,0.15);">
+                  <!-- Loaded dynamically in merchant.js -->
+                </div>
+                <!-- Input footer -->
+                <div class="inbox-thread-footer" style="padding: 12px 20px; border-top: 1px solid var(--border-color); background: rgba(255,255,255,0.01); display: flex; gap: 10px; align-items: center;">
+                  <input type="text" class="input-control" id="inbox-reply-input" placeholder="Type multi-channel message response..." onkeypress="handleInboxInputKey(event)">
+                  <button class="btn" style="height: 42px;" onclick="sendInboxMerchantReply()">
+                    <i data-lucide="send"></i> Reply
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Settings & WABA Integration -->
+          <div id="merchant-sec-settings" class="merchant-section" style="display: none;">
+            <div class="catalog-header">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Zanji SaaS Settings & API Gateway</h3>
+                <p style="font-size: 0.85rem; color: var(--text-secondary);">Configure your official WhatsApp Business credentials and manage SaaS subscription plans</p>
+              </div>
+            </div>
+
+            <!-- Settings Grid -->
+            <div class="dashboard-details" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+              <!-- Left Column: WABA & Webhook Configuration -->
+              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div class="panel-card-title">
+                  <span>Meta Cloud API Settings</span>
+                  <span id="waba-status-badge" class="status-badge disconnected">Disconnected</span>
+                </div>
+                
+                <form id="waba-settings-form" onsubmit="saveWabaSettings(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+                  <div class="input-group">
+                    <label for="waba-app-id">WhatsApp Business Account (WABA) ID</label>
+                    <input type="text" id="waba-app-id" class="input-control" placeholder="e.g. 192847104928172">
+                  </div>
+                  <div class="input-group">
+                    <label for="waba-phone-id">Phone Number ID</label>
+                    <input type="text" id="waba-phone-id" class="input-control" placeholder="e.g. 109284719284">
+                  </div>
+                  <div class="input-group">
+                    <label for="waba-token">Permanent System User Access Token</label>
+                    <input type="password" id="waba-token" class="input-control" placeholder="EAAGxO2vVdpkBAC...">
+                  </div>
+                  <div class="input-group">
+                    <label>Webhook Callback URL (Add to Meta Developer Console)</label>
+                    <input type="text" class="input-control" readonly value="http://localhost:3000/webhook" style="background: rgba(0,0,0,0.3); color: var(--text-secondary); cursor: pointer;" onclick="navigator.clipboard.writeText(this.value); alert('Copied Webhook URL!')">
+                  </div>
+                  <div class="input-group">
+                    <label for="waba-verify-token">Webhook Verification Token (Verify Token)</label>
+                    <input type="text" id="waba-verify-token" class="input-control" value="merchant_secret_token">
+                  </div>
+                  <button type="submit" class="btn" style="width: 100%; justify-content: center; height: 42px;">
+                    <i data-lucide="save"></i> Save Configuration
+                  </button>
+                </form>
+              </div>
+
+              <!-- Right Column: Meta Approved Message Templates & Verification -->
+              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="panel-card-title">Approved Meta API Message Templates</div>
+                <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
+                  
+                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(16,185,129,0.03); border-color: rgba(16,185,129,0.15)">
+                    <div>
+                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">eid_discount_template</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Greeting discount template (Urdu/English)</p>
+                    </div>
+                    <span class="status-badge delivered" style="padding: 2px 8px; font-size: 0.7rem;">Approved</span>
+                  </div>
+
+                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(16,185,129,0.03); border-color: rgba(16,185,129,0.15)">
+                    <div>
+                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">cart_recovery_alert</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Automated recover abandoned checkouts</p>
+                    </div>
+                    <span class="status-badge delivered" style="padding: 2px 8px; font-size: 0.7rem;">Approved</span>
+                  </div>
+
+                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(245,158,11,0.03); border-color: rgba(245,158,11,0.15)">
+                    <div>
+                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">order_invoice_pdf</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Interactive billing receipt template</p>
+                    </div>
+                    <span class="status-badge pending" style="padding: 2px 8px; font-size: 0.7rem;">Pending Review</span>
+                  </div>
+
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; padding: 10px; background: rgba(0,0,0,0.15); border-radius: var(--radius-sm)">
+                  <i data-lucide="info" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; color: var(--accent-secondary)"></i>
+                  Meta Cloud API requires all customer-initiated conversations that start from outbound marketing campaigns to use officially approved pre-reviewed templates.
+                </div>
+              </div>
+
+              <!-- Column 3: Team Inbox & Operator Routing -->
+              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div class="panel-card-title">
+                  <span>Team Routing & Operators</span>
+                </div>
+                
+                <div class="input-group">
+                  <label for="routing-strategy">Routing Rules Selection</label>
+                  <select id="routing-strategy" class="input-control" onchange="changeRoutingAlgorithm(this.value)" style="background: rgba(0,0,0,0.3); border-color: var(--border-color); color: var(--text-primary);">
+                    <option value="round-robin">Round-Robin (Auto-Route)</option>
+                    <option value="manual">Manual Assignment</option>
+                  </select>
+                </div>
+                
+                <div style="font-size: 0.85rem; font-weight: 600; margin-top: 5px; color: var(--text-primary);">Active Operators</div>
+                <div id="operators-list-container" style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
+                  <!-- Loaded dynamically in merchant.js -->
+                </div>
+              </div>
+            </div>
+
+            <!-- SaaS Subscription Panel -->
+            <div class="panel-card">
+              <div class="panel-card-title">Zanji OS SaaS Subscription Plan</div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.25rem;">
+                
+                <!-- Starter Tier -->
+                <div class="stat-card billing-plan-card" id="plan-tier-free" style="cursor: pointer;" onclick="changeSaaSPlan('free')">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                    <div>
+                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px;">Starter Plan</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary)">Ideal for micro-sellers starting out</p>
+                    </div>
+                    <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: var(--text-primary)">Free</span>
+                  </div>
+                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
+                    <li>1 Connected Phone Number</li>
+                    <li>Up to 50 Auto-Orders / Month</li>
+                    <li>Standard Customer Storefront</li>
+                    <li>Manual Broadcast Marketing Campaigns</li>
+                  </ul>
+                  <button class="btn btn-secondary btn-sm plan-select-btn" style="width: 100%; justify-content: center;" id="btn-select-free">Active Plan</button>
+                </div>
+
+                <!-- Pro Tier -->
+                <div class="stat-card billing-plan-card" id="plan-tier-pro" style="cursor: pointer;" onclick="changeSaaSPlan('pro')">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                    <div>
+                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; color: var(--accent-primary)">Pro SaaS Mode</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary)">Optimized for scaling shops</p>
+                    </div>
+                    <div style="text-align: right;">
+                      <span style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--accent-primary)">$29</span>
+                      <span style="font-size: 0.7rem; color: var(--text-muted)">/mo</span>
+                    </div>
+                  </div>
+                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
+                    <li>1 Linked official WABA Connection</li>
+                    <li><strong>Unlimited Auto-Orders</strong></li>
+                    <li><strong>AI Urdu/English Voice Note Parser</strong></li>
+                    <li>Automated Cart Recovery and Broadcasts</li>
+                    <li>Direct payment integration</li>
+                  </ul>
+                  <button class="btn btn-sm plan-select-btn" style="width: 100%; justify-content: center; background: rgba(16,185,129,0.1); color: var(--accent-primary); border-color: rgba(16,185,129,0.2);" id="btn-select-pro">Upgrade to Pro</button>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="stat-card billing-plan-card" id="plan-tier-enterprise" style="cursor: pointer;" onclick="changeSaaSPlan('enterprise')">
+                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                    <div>
+                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; color: var(--accent-purple)">Enterprise SaaS</h4>
+                      <p style="font-size: 0.75rem; color: var(--text-secondary)">For high-volume retail brands</p>
+                    </div>
+                    <div style="text-align: right;">
+                      <span style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--accent-purple)">$99</span>
+                      <span style="font-size: 0.7rem; color: var(--text-muted)">/mo</span>
+                    </div>
+                  </div>
+                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
+                    <li><strong>Multiple WABA numbers</strong> / Accounts</li>
+                    <li>Dedicated server bandwidth</li>
+                    <li>Priority AI response speeds</li>
+                    <li>Custom CRM database sync integrations</li>
+                    <li>24/7 SLA Technical Account Support</li>
+                  </ul>
+                  <button class="btn btn-sm plan-select-btn" style="width: 100%; justify-content: center; background: rgba(139,92,246,0.1); color: var(--accent-purple); border-color: rgba(139,92,246,0.2);" id="btn-select-enterprise">Subscribe Enterprise</button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CUSTOMER STOREFRONT TAB -->
+      <section id="storefront-tab" class="tab-content">
+        <div class="storefront-container" id="storefront-content">
+          <!-- Loading or Catalog screen loaded by storefront.js -->
+        </div>
+      </section>
+      
+    </main>
+
+    <!-- Right Panel - WhatsApp Mobile Phone Simulator -->
+    <aside class="mobile-simulator">
+      <div class="mobile-inner">
+        <!-- Island Notch -->
+        <div class="phone-island"></div>
+        
+        <!-- Status Bar -->
+        <div class="phone-status-bar">
+          <span id="simulator-time">20:05</span>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <i data-lucide="signal" style="width: 14px; height: 14px;"></i>
+            <i data-lucide="wifi" style="width: 14px; height: 14px;"></i>
+            <i data-lucide="battery" style="width: 16px; height: 16px;"></i>
+          </div>
+        </div>
+
+        <!-- WhatsApp Chat Header -->
+        <div class="wa-header">
+          <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;" onclick="switchView('merchant')">
+            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
+            <div class="wa-avatar">ZS</div>
+          </div>
+          <div class="wa-merchant-info">
+            <div class="wa-merchant-name">
+              <span id="wa-header-store-name">Zari Boutique</span>
+              <svg class="wa-verified" viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-left: 2px;">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <div class="wa-merchant-status">Official Business Account</div>
+          </div>
+          <div style="display: flex; gap: 12px; opacity: 0.85;">
+            <i data-lucide="video" style="width: 18px; height: 18px;"></i>
+            <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+            <i data-lucide="more-vertical" style="width: 18px; height: 18px;"></i>
+          </div>
+        </div>
+
+        <!-- Suggestion Action Chips -->
+        <div class="wa-quick-actions" id="wa-suggestion-chips">
+          <!-- Loaded dynamically in app.js -->
+        </div>
+
+        <!-- Chat Conversation Area -->
+        <div class="wa-body" id="wa-chat-body">
+          <!-- Loaded dynamically in whatsapp.js -->
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="wa-input-container">
+          <i data-lucide="smile" style="color: #8696a0; cursor: pointer; width: 22px; height: 22px;"></i>
+          <i data-lucide="paperclip" style="color: #8696a0; cursor: pointer; width: 20px; height: 20px; transform: rotate(45deg);"></i>
+          <input type="text" class="wa-input-box" id="wa-chat-input" placeholder="Type a message..." onkeypress="handleWaInputKey(event)">
+          <button class="wa-mic-btn" id="wa-mic-btn" onclick="startSimulatedVoiceRecording()" style="background: none; border: none; padding: 4px; color: #8696a0; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-right: 4px;" title="Record Voice Note">
+            <i data-lucide="mic" style="width: 22px; height: 22px;"></i>
+          </button>
+          <button class="wa-send-btn" onclick="sendWaCustomerMessage()">
+            <i data-lucide="send" style="width: 16px; height: 16px; margin-left: 2px;"></i>
+          </button>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- INSTAGRAM IMPORT MODAL -->
+  <div class="modal-overlay" id="instagram-import-modal">
+    <div class="modal-content" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>AI Instagram Catalog Ingestor</h3>
+        <button class="modal-close" onclick="closeModal('instagram-import-modal')">&times;</button>
+      </div>
+      <form id="instagram-import-form" onsubmit="handleInstagramImportSubmit(event)">
+        <div class="input-group">
+          <label for="ig-username">Instagram Username / Handle</label>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span style="color: var(--text-muted); font-weight: 600;">@</span>
+            <input type="text" id="ig-username" class="input-control" required placeholder="zari_boutique_pk" style="flex: 1;">
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="ig-post-count">Select Import Feed Count</label>
+          <select id="ig-post-count" class="input-control">
+            <option value="3">Latest 3 Posts (Recommended)</option>
+            <option value="6">Latest 6 Posts</option>
+            <option value="9">Latest 9 Posts</option>
+          </select>
+        </div>
+        
+        <!-- Live AI Extraction Steps Progress -->
+        <div id="ig-progress-container" style="display: none; margin: 1.5rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px;">
+            <span id="ig-progress-status" style="font-weight: 600; color: var(--accent-primary);">Starting AI parser...</span>
+            <span id="ig-progress-percent">0%</span>
+          </div>
+          <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;">
+            <div id="ig-progress-bar" style="width: 0%; height: 100%; background: var(--accent-primary); transition: width 0.3s ease;"></div>
+          </div>
+          <div style="margin-top: 10px; font-size: 0.75rem; color: var(--text-secondary); height: 18px; overflow: hidden;" id="ig-progress-subtext">Connecting to Instagram API...</div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('instagram-import-modal')">Cancel</button>
+          <button type="submit" class="btn" style="flex: 1;" id="ig-submit-btn"><i data-lucide="sparkles"></i> Ingest Catalog</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADD PRODUCT MODAL -->
+  <div class="modal-overlay" id="add-product-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add New Catalog Item</h3>
+        <button class="modal-close" onclick="closeModal('add-product-modal')">&times;</button>
+      </div>
+      <form id="add-product-form" onsubmit="handleNewProductSubmit(event)">
+        <div class="input-group">
+          <label for="p-title">Product Name</label>
+          <input type="text" id="p-title" class="input-control" required placeholder="e.g. Lawn Embroidered Suit 3pc">
+        </div>
+        <div class="input-group">
+          <label for="p-price">Price (PKR)</label>
+          <input type="number" id="p-price" class="input-control" required placeholder="e.g. 3500">
+        </div>
+        <div class="input-group">
+          <label for="p-image">Product Image URL (or select mock style)</label>
+          <select id="p-image" class="input-control">
+            <option value="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80">Kurta (Red Linen)</option>
+            <option value="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=400&q=80">Embroidered Dress (Pastel Shawl)</option>
+            <option value="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=400&q=80">Casual Footwear (Khussa)</option>
+            <option value="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80">Traditional Silk Scarf</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="p-desc">Product Description</label>
+          <textarea id="p-desc" class="input-control" style="height: 80px; resize: none;" required placeholder="Describe the item fabric, sizing, colors..."></textarea>
+          <div class="ai-generator-row">
+            <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center;" onclick="generateMockAiDescription()">
+              <i data-lucide="sparkles" style="color: var(--accent-purple); width: 14px; height: 14px;"></i> Generate AI Copy
+            </button>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="p-stock">Starting Inventory Stock</label>
+          <input type="number" id="p-stock" class="input-control" value="25" required>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('add-product-modal')">Cancel</button>
+          <button type="submit" class="btn" style="flex: 1;">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ORDER ACTIONS / DETAILS MODAL -->
+  <div class="modal-overlay" id="order-details-modal">
+    <div class="modal-content" style="max-width: 550px;">
+      <div class="modal-header">
+        <h3>Order Details & Logistics Hub</h3>
+        <button class="modal-close" onclick="closeModal('order-details-modal')">&times;</button>
+      </div>
+      <div id="order-details-modal-content">
+        <!-- Rendered dynamically in merchant.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- BROADCAST CAMPAIGN MODAL -->
+  <div class="modal-overlay" id="create-broadcast-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Launch WhatsApp Broadcast</h3>
+        <button class="modal-close" onclick="closeModal('create-broadcast-modal')">&times;</button>
+      </div>
+      <form id="broadcast-campaign-form" onsubmit="handleBroadcastSubmit(event)">
+        <div class="input-group">
+          <label for="b-name">Campaign Name</label>
+          <input type="text" id="b-name" class="input-control" required placeholder="e.g. Weekend Flash Sale">
+        </div>
+        <div class="input-group">
+          <label for="b-segment">Customer Segment Group</label>
+          <select id="b-segment" class="input-control" onchange="calculateSegmentSize(this.value)">
+            <option value="all">All Active Contacts (185 customers)</option>
+            <option value="abandoned">Abandoned Cart Users (12 customers)</option>
+            <option value="vip">VIP Repeat Shoppers (35 customers)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="b-message">WhatsApp Broadcast Message Template (Urdu / English support)</label>
+          <textarea id="b-message" class="input-control" style="height: 120px; resize: none;" required placeholder="Salam! Our new collection is live..."></textarea>
+          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+            Supported variables: <code>{name}</code>, <code>{catalog_link}</code>
+          </div>
+        </div>
+        <div class="stat-card" style="padding: 10px; margin-bottom: 1.5rem; background: rgba(0,0,0,0.1)">
+          <div style="font-size: 0.8rem; color: var(--text-secondary);">Estimated Cost (Free MVP Tier):</div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-primary);" id="broadcast-cost-estimate">0.00 PKR (Utilizing official Meta API sandbox limits)</div>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('create-broadcast-modal')">Cancel</button>
+          <button type="submit" class="btn" style="flex: 1;"><i data-lucide="send"></i> Launch Campaign</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom App Footer Info -->
+  <footer class="app-footer">
+    <div>
+      Powered by <strong>Zanji Conversational Operating System</strong>. Turning social sellers into SaaS storefronts.
+    </div>
+    <div>
+      <a href="https://github.com" target="_blank">Documentation</a> &bull; 
+      <a href="#" onclick="switchView('storefront')">Preview Storefront</a>
+    </div>
+  </footer>
+
+  <!-- FLOATING SCENARIO DEMO TESTER -->
+  <div class="demo-tester-wrapper" id="demo-tester-wrapper">
+    <button class="demo-tester-toggle-btn" onclick="toggleDemoPanel()" title="Open Demo Tester Control Panel">
+      <i data-lucide="terminal"></i> <span>Demo Panel</span>
+      <span class="pulse-dot"></span>
+    </button>
+    <div class="demo-tester-panel" id="demo-tester-panel">
+      <div class="demo-panel-header">
+        <h4><i data-lucide="flask-conical" style="color: var(--accent-primary); width: 16px; height: 16px; vertical-align: middle;"></i> Zanji Interactive Demo Panel</h4>
+        <button class="demo-close-btn" onclick="toggleDemoPanel()">&times;</button>
+      </div>
+      <p class="demo-panel-desc">Click any scenario below to automatically run the step-by-step merchant and customer flows.</p>
+      <div class="demo-scenarios-list">
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(1)">
+          <div class="scenario-number">1</div>
+          <div class="scenario-info">
+            <strong>Storefront QR Onboarding</strong>
+            <p>Scan WhatsApp QR to auto-verify checkout session token</p>
+          </div>
+        </button>
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(2)">
+          <div class="scenario-number">2</div>
+          <div class="scenario-info">
+            <strong>Urdu Voice Note Order</strong>
+            <p>Simulate customer voice order, transcription & AI Draft Invoice</p>
+          </div>
+        </button>
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(3)">
+          <div class="scenario-number">3</div>
+          <div class="scenario-info">
+            <strong>Cart Abandonment Recovery</strong>
+            <p>Trigger automated bot discount follow-up in WhatsApp</p>
+          </div>
+        </button>
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(4)">
+          <div class="scenario-number">4</div>
+          <div class="scenario-info">
+            <strong>1-Click Instagram Catalog Import</strong>
+            <p>Launch catalog builder with AI image metadata extraction</p>
+          </div>
+        </button>
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(5)">
+          <div class="scenario-number">5</div>
+          <div class="scenario-info">
+            <strong>Launch Eid Broadcast Marketing</strong>
+            <p>Send bulk coupon discount cards to repeating buyer segments</p>
+          </div>
+        </button>
+        <button class="demo-scenario-btn" onclick="triggerDemoScenario(6)">
+          <div class="scenario-number">6</div>
+          <div class="scenario-info">
+            <strong>CTWA Ad Lead & Auto-Route</strong>
+            <p>Simulate Facebook/Instagram Ad click & auto round-robin assign</p>
+          </div>
+        </button>
+      </div>
+      <div class="demo-panel-footer">
+        Gemini Sandbox Connected: Active • Region: <span id="demo-active-region">PK</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <!-- Chart.js for premium analytics graphics (loaded via CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Main Logic Modules -->
+  <script src="locales.js?v=2.2"></script>
+  <script src="app.js?v=2.2"></script>
+  <script src="whatsapp.js?v=2.2"></script>
+  <script src="merchant.js?v=2.2"></script>
+  <script src="storefront.js?v=2.2"></script>
+</body>
+</html>

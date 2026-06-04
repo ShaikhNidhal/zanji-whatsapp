@@ -1,0 +1,6 @@
+node_modules/
+waba_config.json
+storage/tenant_*
+*.log
+.DS_Store
+.gemini/
