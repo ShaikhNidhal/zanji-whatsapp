@@ -16,6 +16,7 @@ const { calculateShippingRate } = require('./src/services/shippingService');
 const { assessOrderRisk } = require('./src/middleware/rtoShield');
 const webhookRouter = require('./src/routes/webhookRouter');
 const { initSocketServer } = require('./src/services/socketService');
+const { keepZanjiEngineAlive } = require('./src/services/keepAliveService');
 
 const PORT = process.env.PORT || 3000;
 
@@ -90,7 +91,11 @@ const server = http.createServer((req, res) => {
 
   const currentUrl = new URL(req.url, `http://${req.headers.host}`);
   const pathname = currentUrl.pathname;
-  const q = Object.fromEntries(currentUrl.searchParams);
+  // Health check endpoint (Used by keep-alive worker and uptime monitors)
+  if (req.method === 'GET' && pathname === '/health') {
+    sendJSON(res, 200, { status: "UP", timestamp: new Date() });
+    return;
+  }
 
   // 1. Multi-Tenant Meta API Webhook Verification (GET)
   //    Supports both /webhook (legacy) and /whatsapp/webhook (canonical)
@@ -434,4 +439,8 @@ server.listen(PORT, () => {
   console.log(`👉 Webhook verify endpoint: http://localhost:${PORT}/webhook`);
   console.log(`👉 Client events listener:   http://localhost:${PORT}/events`);
   console.log(`=============================================================\n`);
+
+  // Initialize Render free-tier keep-alive worker
+  const renderAppUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
+  keepZanjiEngineAlive(renderAppUrl);
 });
