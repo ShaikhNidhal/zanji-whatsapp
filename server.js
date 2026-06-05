@@ -91,6 +91,7 @@ const server = http.createServer((req, res) => {
 
   const currentUrl = new URL(req.url, `http://${req.headers.host}`);
   const pathname = currentUrl.pathname;
+  const q = Object.fromEntries(currentUrl.searchParams.entries());
   // Health check endpoint (Used by keep-alive worker and uptime monitors)
   if (req.method === 'GET' && pathname === '/health') {
     sendJSON(res, 200, { status: "UP", timestamp: new Date() });
