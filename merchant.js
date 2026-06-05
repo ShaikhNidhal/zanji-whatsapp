@@ -1134,10 +1134,6 @@ function loadWabaSettings() {
   if (strategyEl) strategyEl.value = ZanjiState.routingAlgorithm || 'round-robin';
   renderOperatorsSettingsList();
   
-  if (typeof fetchWaitlistApplications === 'function') {
-    fetchWaitlistApplications();
-  }
-  
   updateWabaSettingsUI(config);
 }
 

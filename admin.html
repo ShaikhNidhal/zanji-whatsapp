@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zanji - Internal Developer & Support Admin Panel</title>
+  <!-- Google Fonts & Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2.3">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Admin Specific Styling (Premium Dark Mode) */
+    body {
+      background-color: #060913;
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .admin-login-container {
+      max-width: 400px;
+      margin: 8rem auto;
+      padding: 2.5rem;
+      background: rgba(18, 24, 38, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+
+    .admin-login-logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-primary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 auto 1.5rem auto;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+    }
+
+    .admin-nav {
+      background: rgba(18, 24, 38, 0.85);
+      border-bottom: 1px solid var(--border-color);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .admin-menu {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .admin-menu-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .admin-menu-link:hover, .admin-menu-link.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .admin-menu-link.active {
+      border-bottom: 2px solid var(--accent-purple);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+
+    .admin-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .metric-card {
+      background: rgba(18, 24, 38, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition);
+    }
+
+    .metric-card:hover {
+      border-color: rgba(139, 92, 246, 0.3);
+      background: rgba(18, 24, 38, 0.55);
+    }
+
+    .metric-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .complaint-card {
+      background: rgba(18, 24, 38, 0.3);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .complaint-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(18, 24, 38, 0.45);
+    }
+
+    .priority-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .priority-critical { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
+    .priority-high { background: rgba(245, 158, 11, 0.15); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.25); }
+    .priority-medium { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.25); }
+    .priority-low { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.25); }
+
+    .health-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 99px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .health-fill {
+      height: 100%;
+      border-radius: 99px;
+      transition: width 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ADMIN LOGIN GATE -->
+  <div id="admin-login-panel" class="admin-login-container">
+    <div class="admin-login-logo">
+      <i data-lucide="shield-check"></i>
+    </div>
+    <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">Zanji Developer Admin</h3>
+    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem;">Authorized internal team and developers access only</p>
+    
+    <form onsubmit="handleAdminLogin(event)" style="display: flex; flex-direction: column; gap: 1.25rem; text-align: left;">
+      <div class="input-group">
+        <label for="admin-user">Username</label>
+        <input type="text" id="admin-user" class="input-control" required placeholder="admin" style="background: rgba(0,0,0,0.2);">
+      </div>
+      <div class="input-group">
+        <label for="admin-pass">Security Password</label>
+        <input type="password" id="admin-pass" class="input-control" required placeholder="••••••••" style="background: rgba(0,0,0,0.2);">
+      </div>
+      <div id="login-error" style="color: var(--accent-danger); font-size: 0.8rem; display: none; text-align: center; margin-bottom: -0.5rem;">
+        ❌ Invalid developer credentials. Access denied.
+      </div>
+      <button type="submit" class="btn" style="width: 100%; justify-content: center; height: 44px; background: var(--accent-purple); font-weight: 700; margin-top: 0.5rem;">
+        <i data-lucide="unlock"></i> Authenticate & Enter
+      </button>
+    </form>
+  </div>
+
+  <!-- ADMIN PORTAL MAIN UI (Hidden by default) -->
+  <div id="admin-portal-app" style="display: none; min-height: 100vh; display: flex; flex-direction: column;">
+    
+    <!-- Admin Header -->
+    <header class="admin-nav">
+      <div class="logo-container">
+        <div class="logo-icon" style="background: linear-gradient(135deg, var(--accent-purple), #6366f1); box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);">A</div>
+        <div class="logo-text">
+          <h1>Zanji Admin</h1>
+        </div>
+        <span class="logo-tag" style="color: var(--accent-purple); background: rgba(139, 92, 246, 0.1); border-color: rgba(139, 92, 246, 0.2);">Developer Suite</span>
+      </div>
+
+      <nav class="admin-menu">
+        <a href="#" id="menu-waitlist" class="admin-menu-link active" onclick="switchAdminSection('waitlist')">
+          <i data-lucide="user-check"></i> Whitelist Requests
+        </a>
+        <a href="#" id="menu-complaints" class="admin-menu-link" onclick="switchAdminSection('complaints')">
+          <i data-lucide="ticket"></i> Support Desk
+        </a>
+        <a href="#" id="menu-system" class="admin-menu-link" onclick="switchAdminSection('system')">
+          <i data-lucide="cpu"></i> System Health
+        </a>
+      </nav>
+
+      <div>
+        <button class="btn btn-secondary btn-sm" onclick="handleAdminLogout()" style="border-color: rgba(239, 68, 68, 0.2); color: #ef4444 !important;">
+          <i data-lucide="log-out"></i> Log Out
+        </button>
+      </div>
+    </header>
+
+    <!-- Admin Content Area -->
+    <main class="admin-container">
+      
+      <!-- System Summary Cards -->
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-primary);">
+            <i data-lucide="users"></i>
+          </div>
+          <div>
+            <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Waitlist Size</h4>
+            <span id="metric-waitlist-count" style="font-size: 1.5rem; font-weight: 800; color: #fff;">0</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">
+            <i data-lucide="alert-triangle"></i>
+          </div>
+          <div>
+            <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Open Tickets</h4>
+            <span id="metric-tickets-count" style="font-size: 1.5rem; font-weight: 800; color: #fff;">0</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon" style="background: rgba(139, 92, 246, 0.1); color: var(--accent-purple);">
+            <i data-lucide="activity"></i>
+          </div>
+          <div>
+            <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Meta API Gateway</h4>
+            <span id="metric-gateway-status" style="font-size: 0.85rem; font-weight: 700; color: var(--accent-primary);">🟡 Sandbox Active</span>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;">
+            <i data-lucide="radio"></i>
+          </div>
+          <div>
+            <h4 style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Active Clients</h4>
+            <span id="metric-sse-clients" style="font-size: 1.5rem; font-weight: 800; color: #fff;">1 Connected</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION: Whitelist Signups Manager -->
+      <section id="admin-sec-waitlist" class="admin-panel-section">
+        <div class="panel-card">
+          <div class="panel-card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <span>Merchant Waitlist & Whitelist Applications</span>
+            <button class="btn btn-secondary btn-sm" onclick="fetchWaitlistData()" style="gap: 6px;">
+              <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i> Sync Waitlist
+            </button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Review, authenticate, and whitelist brand operations requesting WABA provisioning.</p>
+          
+          <div style="overflow-x: auto;">
+            <table class="table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.85rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--border-color); color: var(--text-secondary);">
+                  <th style="padding: 12px;">Brand / Business Name</th>
+                  <th style="padding: 12px;">WhatsApp Contact</th>
+                  <th style="padding: 12px;">Category</th>
+                  <th style="padding: 12px;">Est. Monthly Volume</th>
+                  <th style="padding: 12px;">Submission Time</th>
+                  <th style="padding: 12px; text-align: right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="waitlist-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: Support Desk (Complaints) -->
+      <section id="admin-sec-complaints" class="admin-panel-section" style="display: none;">
+        <div class="panel-card" style="margin-bottom: 1.5rem;">
+          <div class="panel-card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <span>Internal Support Desk & Issue Resolver</span>
+            <button class="btn btn-secondary btn-sm" onclick="fetchComplaintsData()" style="gap: 6px;">
+              <i data-lucide="refresh-cw" style="width: 14px; height: 14px;"></i> Refresh Desk
+            </button>
+          </div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Solve active integration complaints, catalog timeouts, or transaction payment failures flagged by merchants.</p>
+        </div>
+
+        <div id="complaints-list-container">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- SECTION: System Health & Utilisation -->
+      <section id="admin-sec-system" class="admin-panel-section" style="display: none;">
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem;">
+          
+          <!-- Left Column: Dev Logs & System Utilization -->
+          <div class="panel-card">
+            <div class="panel-card-title" style="margin-bottom: 1.25rem;">Zanji Micro-Services Status</div>
+            
+            <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 1.5rem;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span>AI voice note pipeline parser workload</span>
+                  <span style="font-weight: 700; color: var(--accent-primary);">12% Load</span>
+                </div>
+                <div class="health-bar"><div class="health-fill" style="width: 12%; background: var(--accent-primary);"></div></div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span>Multitenant round-robin router threads</span>
+                  <span style="font-weight: 700; color: var(--accent-primary);">Operational</span>
+                </div>
+                <div class="health-bar"><div class="health-fill" style="width: 100%; background: var(--accent-primary);"></div></div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span>Memory allocation (In-memory DB size)</span>
+                  <span style="font-weight: 700; color: var(--accent-orange);">42% (256 MB / 512 MB)</span>
+                </div>
+                <div class="health-bar"><div class="health-fill" style="width: 42%; background: var(--accent-orange);"></div></div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem;">
+                  <span>RTO shield scoring latency</span>
+                  <span style="font-weight: 700; color: var(--accent-primary);">125ms (Healthy)</span>
+                </div>
+                <div class="health-bar"><div class="health-fill" style="width: 15%; background: var(--accent-primary);"></div></div>
+              </div>
+            </div>
+            
+            <div style="font-size: 0.75rem; color: var(--text-muted); background: rgba(0,0,0,0.15); border-radius: var(--radius-sm); padding: 12px; line-height: 1.4;">
+              <i data-lucide="info" style="width: 14px; height: 14px; color: var(--accent-purple); vertical-align: middle; margin-right: 4px;"></i>
+              This developer view displays the system resources allocated to the local mock database instance. Real production setups scale dynamically across AWS container clusters.
+            </div>
+          </div>
+
+          <!-- Right Column: Outgoing Webhook Monitor -->
+          <div class="panel-card" style="display: flex; flex-direction: column;">
+            <div class="panel-card-title" style="margin-bottom: 1.25rem;">System Configuration Logs</div>
+            <div style="flex: 1; min-height: 180px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px; font-family: monospace; font-size: 0.75rem; color: #10b981; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;" id="admin-dev-logs">
+              <div>[SYSTEM] Developer Admin suite authenticated successfully.</div>
+              <div>[DB ENGINE] Loaded mock tables: merchants, orders, users, waitlist, complaints.</div>
+              <div>[SSE STREAM] Listening for outbound waitlist/ticket broadcast updates...</div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border-color); margin-top: auto;">
+      <p>&copy; 2026 Zanji Technologies Inc. Internal Platform Administration tools.</p>
+    </footer>
+
+  </div>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    let adminAuthenticated = false;
+    let sseSource = null;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      // Check if already authenticated in this session
+      if (sessionStorage.getItem('zanji_admin_auth') === 'true') {
+        showAdminDashboard();
+      }
+    });
+
+    // Admin Authentication Gate
+    function handleAdminLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById('admin-user').value.trim();
+      const pass = document.getElementById('admin-pass').value.trim();
+      const errorEl = document.getElementById('login-error');
+
+      // Security check
+      if (user === 'admin' && pass === 'admin_zanji_2026') {
+        errorEl.style.display = 'none';
+        sessionStorage.setItem('zanji_admin_auth', 'true');
+        showAdminDashboard();
+      } else {
+        errorEl.style.display = 'block';
+        errorEl.innerText = "❌ Invalid developer credentials. Access denied.";
+      }
+    }
+
+    function showAdminDashboard() {
+      document.getElementById('admin-login-panel').style.display = 'none';
+      document.getElementById('admin-portal-app').style.display = 'flex';
+      adminAuthenticated = true;
+      
+      // Load initial panels data
+      fetchWaitlistData();
+      fetchComplaintsData();
+      initAdminSSE();
+
+      // Log success
+      logDevMessage('[AUTH] Developer session verified. Swapped layout to dashboard.');
+    }
+
+    function handleAdminLogout() {
+      sessionStorage.removeItem('zanji_admin_auth');
+      if (sseSource) sseSource.close();
+      window.location.reload();
+    }
+
+    // Dev Logging helper
+    function logDevMessage(msg) {
+      const logsEl = document.getElementById('admin-dev-logs');
+      if (!logsEl) return;
+      const logDiv = document.createElement('div');
+      logDiv.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      logsEl.appendChild(logDiv);
+      logsEl.scrollTop = logsEl.scrollHeight;
+    }
+
+    // Admin UI Tab Switcher
+    function switchAdminSection(section) {
+      const sections = ['waitlist', 'complaints', 'system'];
+      sections.forEach(sec => {
+        const el = document.getElementById(`admin-sec-${sec}`);
+        const link = document.getElementById(`menu-${sec}`);
+        if (el) el.style.display = (sec === section) ? 'block' : 'none';
+        if (link) link.classList.toggle('active', sec === section);
+      });
+      lucide.createIcons();
+    }
+
+    // Fetch Waitlist Applications from Server
+    function fetchWaitlistData() {
+      const tableBody = document.getElementById('waitlist-table-body');
+      if (!tableBody) return;
+
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="padding: 20px; text-align: center; color: var(--text-muted);">
+            <i data-lucide="loader" class="animate-spin" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"></i>
+            Syncing brand Waitlist...
+          </td>
+        </tr>
+      `;
+      lucide.createIcons();
+
+      fetch('/api/waitlist')
+        .then(res => res.json())
+        .then(data => {
+          if (!data.success || !data.waitlist || data.waitlist.length === 0) {
+            tableBody.innerHTML = `
+              <tr>
+                <td colspan="6" style="padding: 20px; text-align: center; color: var(--text-muted);">
+                  No whitelist applications registered yet.
+                </td>
+              </tr>
+            `;
+            document.getElementById('metric-waitlist-count').innerText = '0';
+            return;
+          }
+
+          document.getElementById('metric-waitlist-count').innerText = data.waitlist.length;
+          tableBody.innerHTML = '';
+          data.waitlist.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.style.borderBottom = '1px solid var(--border-color)';
+            tr.style.background = 'rgba(255, 255, 255, 0.01)';
+            const timeStr = item.submittedAt ? new Date(item.submittedAt).toLocaleString() : 'N/A';
+
+            tr.innerHTML = `
+              <td style="padding: 12px; font-weight: 600; color: #fff;">${item.bizName}</td>
+              <td style="padding: 12px; font-family: monospace;">${item.phone}</td>
+              <td style="padding: 12px;">${item.category}</td>
+              <td style="padding: 12px; color: var(--accent-orange);">${item.volume}</td>
+              <td style="padding: 12px; color: var(--text-secondary); font-size: 0.8rem;">${timeStr}</td>
+              <td style="padding: 12px; text-align: right;">
+                <button class="btn btn-secondary btn-sm" style="color: var(--accent-primary) !important; border-color: rgba(16,185,129,0.2); font-size: 0.75rem; padding: 4px 10px; margin-right: 6px;" onclick="approveApplicant('${item.id}', '${item.bizName}')">
+                  Approve
+                </button>
+                <button class="btn btn-secondary btn-sm" style="color: #ef4444 !important; border-color: rgba(239,68,68,0.2); font-size: 0.75rem; padding: 4px 10px;" onclick="rejectApplicant('${item.id}', '${item.bizName}')">
+                  Reject
+                </button>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+          logDevMessage(`[DB ENGINE] Waitlist synchronized successfully. Total items: ${data.waitlist.length}`);
+        })
+        .catch(err => {
+          console.error('Fetch waitlist error:', err);
+          tableBody.innerHTML = `
+            <tr>
+              <td colspan="6" style="padding: 20px; text-align: center; color: var(--accent-danger);">
+                Failed to connect to API Gateway.
+              </td>
+            </tr>
+          `;
+        });
+    }
+
+    function approveApplicant(id, name) {
+      alert(`Whitelist request approved for "${name}". WABA API sandbox token provisioned.`);
+      logDevMessage(`[WHITELIST] Approved merchant "${name}" (ID: ${id})`);
+    }
+
+    function rejectApplicant(id, name) {
+      if (confirm(`Are you sure you want to reject the whitelist application for "${name}"?`)) {
+        alert(`Application for "${name}" rejected.`);
+        logDevMessage(`[WHITELIST] Rejected merchant "${name}" (ID: ${id})`);
+      }
+    }
+
+    // Fetch Complaints (Tickets) from Server
+    function fetchComplaintsData() {
+      const container = document.getElementById('complaints-list-container');
+      if (!container) return;
+
+      container.innerHTML = `
+        <div class="panel-card" style="padding: 30px; text-align: center; color: var(--text-muted);">
+          <i data-lucide="loader" class="animate-spin" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"></i>
+          Syncing open complaints desk...
+        </div>
+      `;
+      lucide.createIcons();
+
+      fetch('/api/complaints')
+        .then(res => res.json())
+        .then(data => {
+          if (!data.success || !data.complaints || data.complaints.length === 0) {
+            container.innerHTML = `
+              <div class="panel-card" style="padding: 30px; text-align: center; color: var(--text-muted);">
+                No active merchant complaints registered. All systems operational!
+              </div>
+            `;
+            document.getElementById('metric-tickets-count').innerText = '0';
+            return;
+          }
+
+          const openTickets = data.complaints.filter(c => c.status === 'Pending');
+          document.getElementById('metric-tickets-count').innerText = openTickets.length;
+
+          container.innerHTML = '';
+          data.complaints.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'complaint-card';
+            if (item.status === 'Resolved') {
+              card.style.opacity = '0.6';
+            }
+
+            const badgeClass = `priority-${item.priority.toLowerCase()}`;
+            const timeStr = new Date(item.created_at).toLocaleString();
+
+            const actionBtn = item.status === 'Pending' 
+              ? `<button class="btn btn-secondary btn-sm" style="color: var(--accent-primary) !important; border-color: rgba(16,185,129,0.2);" onclick="resolveTicket('${item.id}')">
+                   <i data-lucide="check-square" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Resolve Issue
+                 </button>`
+              : `<span class="status-badge delivered" style="font-size: 0.75rem; padding: 4px 10px; background: rgba(16,185,129,0.1); color: var(--accent-primary); border: 1px solid rgba(16,185,129,0.2);">Closed / Resolved</span>`;
+
+            card.innerHTML = `
+              <div style="display: flex; flex-direction: column; gap: 8px; max-width: 75%;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span class="priority-badge ${badgeClass}">${item.priority} Priority</span>
+                  <strong style="color: #fff; font-size: 1rem;">${item.merchant_name}</strong>
+                  <span style="color: var(--text-muted); font-size: 0.75rem;">Contact: ${item.buyer_phone}</span>
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.4; margin: 4px 0;">${item.issue}</p>
+                <span style="color: var(--text-muted); font-size: 0.75rem;">Logged: ${timeStr}</span>
+              </div>
+              <div style="text-align: right;">
+                ${actionBtn}
+              </div>
+            `;
+            container.appendChild(card);
+          });
+          lucide.createIcons();
+          logDevMessage(`[SUPPORT DESK] Complaints list sync completed. Open tickets: ${openTickets.length}`);
+        })
+        .catch(err => {
+          console.error('Fetch complaints error:', err);
+          container.innerHTML = `
+            <div class="panel-card" style="padding: 30px; text-align: center; color: var(--accent-danger);">
+              Failed to sync complaints. API Gateway server offline.
+            </div>
+          `;
+        });
+    }
+
+    // Resolve Support Ticket on Backend
+    function resolveTicket(ticketId) {
+      fetch('/api/complaints/resolve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticketId })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert(`Support Ticket resolved successfully!`);
+          fetchComplaintsData();
+          logDevMessage(`[SUPPORT DESK] Ticket resolved: ${ticketId}`);
+        } else {
+          alert(`Error: ${data.error}`);
+        }
+      })
+      .catch(err => {
+        console.error('Resolve ticket error:', err);
+        alert('Failed to contact server API to resolve ticket.');
+      });
+    }
+
+    // Admin SSE Stream Channel Initialization
+    function initAdminSSE() {
+      if (sseSource) sseSource.close();
+      
+      sseSource = new EventSource('/events');
+
+      sseSource.addEventListener('waitlist_sync', (e) => {
+        try {
+          const signup = JSON.parse(e.data);
+          logDevMessage(`[SSE EVENT] Whitelist request incoming: "${signup.bizName}"`);
+          fetchWaitlistData();
+        } catch(err) {
+          console.error(err);
+        }
+      });
+
+      sseSource.addEventListener('ticket_sync', (e) => {
+        try {
+          const ticket = JSON.parse(e.data);
+          logDevMessage(`[SSE EVENT] Support ticket resolved live: "${ticket.id}"`);
+          fetchComplaintsData();
+        } catch(err) {
+          console.error(err);
+        }
+      });
+
+      sseSource.onerror = () => {
+        logDevMessage(`[SSE STREAM] Warning: EventSource offline. Reconnecting...`);
+      };
+    }
+  </script>
+</body>
+</html>

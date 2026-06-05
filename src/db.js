@@ -107,11 +107,51 @@ const users = [
 
 const waitlist = [];
 
+const complaints = [
+  {
+    id: 'ticket-001',
+    merchant_name: 'Zari Boutique',
+    buyer_phone: '+923001234567',
+    issue: 'Urdu voice message transcription failed on Velvet Khussa order.',
+    priority: 'High',
+    status: 'Pending',
+    created_at: new Date(Date.now() - 3600000 * 2).toISOString()
+  },
+  {
+    id: 'ticket-002',
+    merchant_name: 'Dubai Abaya Shop',
+    buyer_phone: '+971501234567',
+    issue: '1-Click Instagram Catalog crawler returned timeout on post sync.',
+    priority: 'Medium',
+    status: 'Pending',
+    created_at: new Date(Date.now() - 3600000 * 4).toISOString()
+  },
+  {
+    id: 'ticket-003',
+    merchant_name: 'Bali Crafts',
+    buyer_phone: '+628123456789',
+    issue: 'Stripe digital payment split callback webhook returned 500 error.',
+    priority: 'Critical',
+    status: 'Pending',
+    created_at: new Date(Date.now() - 3600000 * 1).toISOString()
+  },
+  {
+    id: 'ticket-004',
+    merchant_name: 'Zari Boutique',
+    buyer_phone: '+923155556789',
+    issue: 'RTO Shield flagged clean customer as RED risk level.',
+    priority: 'Low',
+    status: 'Resolved',
+    created_at: new Date(Date.now() - 3600000 * 12).toISOString()
+  }
+];
+
 const tables = {
   merchant_whatsapp_settings,
   orders,
   users,
-  waitlist
+  waitlist,
+  complaints
 };
 
 // ── Query Engine ──────────────────────────────────────────────────────

@@ -132,6 +132,10 @@ const server = http.createServer((req, res) => {
       serveStaticFile(res, 'login.html', 'text/html');
       return;
     }
+    if (pathname === '/admin.html' || pathname === '/admin') {
+      serveStaticFile(res, 'admin.html', 'text/html');
+      return;
+    }
     if (pathname === '/style.css') {
       serveStaticFile(res, 'style.css', 'text/css');
       return;
@@ -320,6 +324,41 @@ const server = http.createServer((req, res) => {
   if (req.method === 'GET' && pathname === '/api/waitlist') {
     const db = require('./src/db');
     sendJSON(res, 200, { success: true, waitlist: db._tables.waitlist });
+    return;
+  }
+
+  // 4d. Fetch Customer Complaints / Tickets Endpoint (GET)
+  if (req.method === 'GET' && pathname === '/api/complaints') {
+    const db = require('./src/db');
+    sendJSON(res, 200, { success: true, complaints: db._tables.complaints });
+    return;
+  }
+
+  // 4e. Resolve Customer Complaint Ticket (POST)
+  if (req.method === 'POST' && pathname === '/api/complaints/resolve') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body);
+        const { ticketId } = payload;
+        const db = require('./src/db');
+        const ticket = db._tables.complaints.find(c => c.id === ticketId);
+        if (ticket) {
+          ticket.status = 'Resolved';
+          console.log(`[Zanji Server] 🔧 Support ticket resolved: ${ticketId}`);
+          
+          // Broadcast ticket update
+          broadcastToClients('ticket_sync', ticket);
+          
+          sendJSON(res, 200, { success: true, ticket });
+        } else {
+          sendJSON(res, 404, { error: 'Support ticket not found' });
+        }
+      } catch (err) {
+        sendJSON(res, 400, { error: 'Failed to process ticket resolution' });
+      }
+    });
     return;
   }
 
