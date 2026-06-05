@@ -124,6 +124,10 @@ const server = http.createServer((req, res) => {
       serveStaticFile(res, 'index.html', 'text/html');
       return;
     }
+    if (pathname === '/dashboard.html') {
+      serveStaticFile(res, 'dashboard.html', 'text/html');
+      return;
+    }
     if (pathname === '/login.html') {
       serveStaticFile(res, 'login.html', 'text/html');
       return;

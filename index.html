@@ -5,13 +5,278 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zanji - WhatsApp-First Social Commerce Operating System</title>
   <!-- Google Fonts & Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2.2">
-  <!-- Lucide Icons (via CDN) -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Premium Landing Page Custom Styles */
+    body {
+      background-color: #0b141a;
+      color: var(--text-primary);
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    .landing-hero {
+      position: relative;
+      padding: 8rem 2rem 5rem 2rem;
+      text-align: center;
+      background: radial-gradient(circle at top, rgba(16, 185, 129, 0.08) 0%, rgba(11, 20, 26, 0) 60%);
+      overflow: hidden;
+    }
+    
+    .landing-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 1200px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+    }
+
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: var(--accent-primary);
+      padding: 6px 16px;
+      border-radius: 99px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 900px;
+      margin: 0 auto 1.5rem auto;
+      background: linear-gradient(to right, #ffffff 30%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.6;
+    }
+
+    .cta-container {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4rem;
+    }
+
+    @media (max-width: 480px) {
+      .cta-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cta-container .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+      }
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 3rem auto;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Features Grid styling */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      transition: all 0.3s var(--transition);
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .feature-icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Calculator & Form Section Layout */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 6rem auto;
+      padding: 0 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .split-layout {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+    }
+
+    .panel-card-accent {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-card-accent::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, rgba(16, 185, 129, 0.1) 100%);
+      pointer-events: none;
+    }
+
+    /* ROI Calculator Fields styling */
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    
+    .calc-row span:first-child {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .calc-row span:last-child {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .calc-row.highlight {
+      border-bottom: none;
+      padding-top: 15px;
+      margin-top: 10px;
+      border-top: 1px dashed rgba(16, 185, 129, 0.3);
+    }
+    .calc-row.highlight span:first-child {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    .calc-row.highlight span:last-child {
+      color: var(--accent-primary);
+      font-size: 1.2rem;
+    }
+
+    /* Whitelist Success Message styling */
+    .success-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 0;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .success-icon-wrapper {
+      width: 60px;
+      height: 60px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 50%;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .queue-spot-badge {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 8px 20px;
+      border-radius: 8px;
+      margin: 1.25rem 0;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- App Header -->
+  <!-- Landing Header -->
   <header class="app-nav">
     <div class="logo-container">
       <div class="logo-icon">Z</div>
@@ -21,715 +286,282 @@
       <span class="logo-tag">Pakistan MVP</span>
     </div>
     
-    <div class="view-selector">
-      <button class="view-btn active" id="btn-merchant-view" onclick="switchView('merchant')">
-        <i data-lucide="layout-dashboard"></i> Merchant Portal
-      </button>
-      <button class="view-btn" id="btn-storefront-view" onclick="switchView('storefront')">
-        <i data-lucide="shopping-bag"></i> Customer Storefront
-      </button>
-    </div>
-
-    <div style="display: flex; align-items: center; gap: 1.25rem;">
-      <div style="display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary);">
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 8px var(--accent-primary)"></span>
-        Offline Sync Active
-      </div>
-      <select id="region-selector" class="input-control" style="width: auto; padding: 4px 10px; font-size: 0.8rem; background: rgba(0,0,0,0.3); border-color: var(--border-color); color: var(--text-primary); cursor: pointer;" onchange="changeGlobalRegion(this.value)">
-        <option value="PK">Pakistan (PKR)</option>
-        <option value="AE">UAE / MENA (AED)</option>
-        <option value="ID">Indonesia (IDR)</option>
-        <option value="NG">Nigeria (NGN)</option>
-        <option value="GL">Global / Other Countries (USD)</option>
-      </select>
-      <a href="login.html" style="color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 4px; font-size: 0.85rem; font-weight: 500;" onmouseover="this.style.color='var(--accent-danger)'" onmouseout="this.style.color='var(--text-muted)'">
-        <i data-lucide="log-out" style="width: 14px; height: 14px;"></i> Sign Out
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a href="login.html" class="btn btn-secondary btn-sm">
+        <i data-lucide="log-in" style="width: 14px; height: 14px;"></i> Merchant Login
       </a>
     </div>
   </header>
 
-  <!-- Master Layout Grid -->
-  <div class="app-container">
+  <!-- Hero Section -->
+  <section class="landing-hero">
+    <div class="pill-badge">
+      <i data-lucide="sparkles" style="width: 12px; height: 12px;"></i> The WhatsApp-First Social Commerce OS
+    </div>
+    <h2 class="hero-title">
+      Turn WhatsApp Chats Into Structured Sales Automatically
+    </h2>
+    <p class="hero-subtitle">
+      Say goodbye to manual order forms. Zanji uses AI to convert local voice notes into invoices, syncs your Instagram catalog in 1-click, and filters high-risk returns (RTO) before you ship.
+    </p>
+    <div class="cta-container">
+      <a href="#whitelist-form-section" class="btn" style="height: 46px; padding: 0 1.75rem; font-size: 0.95rem;">
+        <i data-lucide="user-plus"></i> Apply for Whitelist Access
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="height: 46px; padding: 0 1.75rem; font-size: 0.95rem; border-color: rgba(255,255,255,0.15)">
+        <i data-lucide="external-link"></i> Launch Live MVP Demo
+      </a>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section style="padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.03);">
+    <h3 class="section-title">Built to Solve Friction for Social Sellers</h3>
+    <p class="section-subtitle">A zero-code operations suite engineered specifically for merchants in Pakistan, Indonesia, and emerging markets.</p>
     
-    <!-- Left/Center Main Panel (Swaps between Merchant Portal & Storefront Checkout) -->
-    <main class="main-viewport">
-      
-      <!-- MERCHANT TAB -->
-      <section id="merchant-tab" class="tab-content active">
-        <div class="merchant-layout">
-          <!-- Merchant Sub-Nav -->
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
-            <div style="display: flex; gap: 1.5rem;">
-              <a href="#" class="merchant-nav-link active" onclick="switchMerchantSection('dashboard')">Dashboard</a>
-              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('catalog')">Catalog Manager</a>
-              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('orders')">Order Manager</a>
-              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('broadcast')">Broadcast Marketing</a>
-              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('inbox')">Unified Inbox</a>
-              <a href="#" class="merchant-nav-link" onclick="switchMerchantSection('settings')">Settings & Billing</a>
-            </div>
-            <div style="color: var(--text-muted); font-size: 0.85rem;" id="merchant-number-display">
-              Connected Number: <strong>+92 300 1234567</strong>
-            </div>
-          </div>
-
-          <!-- Section: Dashboard / Analytics -->
-          <div id="merchant-sec-dashboard" class="merchant-section">
-            <div class="analytics-grid" style="margin-bottom: 2rem;">
-              <div class="stat-card">
-                <div class="stat-header">
-                  <span>Gross Sales (PKR)</span>
-                  <div class="stat-icon green"><i data-lucide="banknote"></i></div>
-                </div>
-                <div class="stat-value" id="stat-sales">PKR 142,500</div>
-                <div class="stat-delta up">
-                  <i data-lucide="trending-up"></i> +18.4% this week
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-header">
-                  <span>Total Orders</span>
-                  <div class="stat-icon blue"><i data-lucide="shopping-cart"></i></div>
-                </div>
-                <div class="stat-value" id="stat-orders">38</div>
-                <div class="stat-delta up">
-                  <i data-lucide="trending-up"></i> +8.2% vs last week
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-header">
-                  <span>Cart Abandonment</span>
-                  <div class="stat-icon purple"><i data-lucide="shopping-bag"></i></div>
-                </div>
-                <div class="stat-value" id="stat-abandonment">42.5%</div>
-                <div class="stat-delta down" style="color: var(--accent-primary);">
-                  <i data-lucide="trending-down"></i> -12.4% (Zanji Autorecovery)
-                </div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-header">
-                  <span>Conversion Rate</span>
-                  <div class="stat-icon orange"><i data-lucide="percent"></i></div>
-                </div>
-                <div class="stat-value" id="stat-conversion">24.8%</div>
-                <div class="stat-delta up">
-                  <i data-lucide="trending-up"></i> +4.5% vs average
-                </div>
-              </div>
-            </div>
-
-            <!-- Charts and Recent Activity -->
-            <div class="dashboard-details">
-              <!-- Visual Chart -->
-              <div class="panel-card">
-                <div class="panel-card-title">
-                  <span>Sales & Conversion Funnel</span>
-                  <div style="font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">Last 7 Days</div>
-                </div>
-                <div class="chart-container">
-                  <canvas id="salesChart"></canvas>
-                </div>
-              </div>
-
-              <!-- Top Products -->
-              <div class="panel-card">
-                <div class="panel-card-title">Top Products</div>
-                <div style="display: flex; flex-direction: column; gap: 1rem;" id="top-products-list">
-                  <!-- Loaded dynamically in app.js -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section: Catalog Manager -->
-          <div id="merchant-sec-catalog" class="merchant-section" style="display: none;">
-            <div class="catalog-header">
-              <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Product Catalog</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Manage items listed in your WhatsApp Catalog</p>
-              </div>
-              <div style="display: flex; gap: 10px;">
-                <button class="btn btn-secondary btn-sm" onclick="openModal('instagram-import-modal')">
-                  <i data-lucide="instagram" style="color: var(--accent-danger); width: 14px; height: 14px; vertical-align: middle; margin-right: 4px;"></i> Import from Instagram
-                </button>
-                <button class="btn btn-sm" onclick="openModal('add-product-modal')">
-                  <i data-lucide="plus"></i> Add New Product
-                </button>
-              </div>
-            </div>
-            
-            <div class="catalog-grid" id="catalog-products-grid">
-              <!-- Loaded dynamically in app.js -->
-            </div>
-          </div>
-
-          <!-- Section: Order Manager -->
-          <div id="merchant-sec-orders" class="merchant-section" style="display: none;">
-            <div class="catalog-header">
-              <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Manage Orders</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Track sales, shipping status, and update buyers via WhatsApp auto-notifications</p>
-              </div>
-            </div>
-
-            <div class="order-list" id="order-manager-list">
-              <!-- Loaded dynamically in app.js -->
-            </div>
-          </div>
-
-          <!-- Section: Broadcast Marketing -->
-          <div id="merchant-sec-broadcast" class="merchant-section" style="display: none;">
-            <div class="catalog-header">
-              <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Broadcast Marketing</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Send targeted WhatsApp updates & campaigns directly to customer groups</p>
-              </div>
-              <button class="btn btn-sm" onclick="openModal('create-broadcast-modal')">
-                <i data-lucide="megaphone"></i> New Broadcast
-              </button>
-            </div>
-
-            <div class="broadcast-grid">
-              <!-- Active campaigns details -->
-              <div class="panel-card">
-                <div class="panel-card-title">Quick Campaigns & Broadcast Templates</div>
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
-                  <div class="stat-card" style="cursor: pointer; background: rgba(16,185,129,0.05)" onclick="prefillBroadcast('abandoned')">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Abandoned Cart Recovery</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Trigger automated follow-ups to customers who left items in their checkout cart.</p>
-                    <span style="font-size: 0.75rem; color: var(--accent-primary); font-weight: 600;">Average success: 22% recovery rate</span>
-                  </div>
-                  <div class="stat-card" style="cursor: pointer;" onclick="prefillBroadcast('eid')">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">Eid Mubarak Discount Campaign</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Send a greeting with a 15% off link to all past active buyers in Pakistan.</p>
-                    <span style="font-size: 0.75rem; color: var(--accent-purple); font-weight: 600;">Targets: 142 customer numbers</span>
-                  </div>
-                  <div class="stat-card" style="cursor: pointer;" onclick="prefillBroadcast('new')">
-                    <h4 style="font-size: 0.95rem; margin-bottom: 4px;">New Arrival Broadcast</h4>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 8px;">Announce new lawn collection patterns to VIP repeating buyers.</p>
-                    <span style="font-size: 0.75rem; color: var(--accent-secondary); font-weight: 600;">Broadcast catalog cards in chat</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Past campaigns log -->
-              <div class="panel-card">
-                <div class="panel-card-title">Campaign Logs</div>
-                <div class="broadcast-history" id="broadcast-history-list">
-                  <!-- Loaded dynamically in app.js -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section: Unified Inbox -->
-          <div id="merchant-sec-inbox" class="merchant-section" style="display: none;">
-            <div class="catalog-header">
-              <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Unified Multi-Channel Inbox</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Manage conversations across WhatsApp, Instagram, and Messenger in one screen</p>
-              </div>
-            </div>
-
-            <div class="inbox-layout" style="display: flex; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: rgba(0,0,0,0.2); height: 500px; overflow: hidden;">
-              <!-- Threads list (Left) -->
-              <div class="inbox-threads-list" id="inbox-threads-container" style="width: 300px; border-right: 1px solid var(--border-color); overflow-y: auto; display: flex; flex-direction: column;">
-                <!-- Loaded dynamically in merchant.js -->
-              </div>
-              
-              <!-- Chat thread detailed log (Right) -->
-              <div class="inbox-active-thread" style="flex: 1; display: flex; flex-direction: column; height: 100%;">
-                <!-- Header -->
-                <div class="inbox-thread-header" id="inbox-thread-header-details" style="padding: 12px 20px; border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.01);">
-                  <!-- Loaded dynamically in merchant.js -->
-                </div>
-                <!-- Messages -->
-                <div class="inbox-thread-body" id="inbox-thread-messages-body" style="flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: rgba(0,0,0,0.15);">
-                  <!-- Loaded dynamically in merchant.js -->
-                </div>
-                <!-- Input footer -->
-                <div class="inbox-thread-footer" style="padding: 12px 20px; border-top: 1px solid var(--border-color); background: rgba(255,255,255,0.01); display: flex; gap: 10px; align-items: center;">
-                  <input type="text" class="input-control" id="inbox-reply-input" placeholder="Type multi-channel message response..." onkeypress="handleInboxInputKey(event)">
-                  <button class="btn" style="height: 42px;" onclick="sendInboxMerchantReply()">
-                    <i data-lucide="send"></i> Reply
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Section: Settings & WABA Integration -->
-          <div id="merchant-sec-settings" class="merchant-section" style="display: none;">
-            <div class="catalog-header">
-              <div>
-                <h3 style="font-family: var(--font-heading); font-size: 1.25rem;">Zanji SaaS Settings & API Gateway</h3>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);">Configure your official WhatsApp Business credentials and manage SaaS subscription plans</p>
-              </div>
-            </div>
-
-            <!-- Settings Grid -->
-            <div class="dashboard-details" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-              <!-- Left Column: WABA & Webhook Configuration -->
-              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1.25rem;">
-                <div class="panel-card-title">
-                  <span>Meta Cloud API Settings</span>
-                  <span id="waba-status-badge" class="status-badge disconnected">Disconnected</span>
-                </div>
-                
-                <form id="waba-settings-form" onsubmit="saveWabaSettings(event)" style="display: flex; flex-direction: column; gap: 1rem;">
-                  <div class="input-group">
-                    <label for="waba-app-id">WhatsApp Business Account (WABA) ID</label>
-                    <input type="text" id="waba-app-id" class="input-control" placeholder="e.g. 192847104928172">
-                  </div>
-                  <div class="input-group">
-                    <label for="waba-phone-id">Phone Number ID</label>
-                    <input type="text" id="waba-phone-id" class="input-control" placeholder="e.g. 109284719284">
-                  </div>
-                  <div class="input-group">
-                    <label for="waba-token">Permanent System User Access Token</label>
-                    <input type="password" id="waba-token" class="input-control" placeholder="EAAGxO2vVdpkBAC...">
-                  </div>
-                  <div class="input-group">
-                    <label>Webhook Callback URL (Add to Meta Developer Console)</label>
-                    <input type="text" id="waba-webhook-url" class="input-control" readonly value="http://localhost:3000/whatsapp/webhook" style="background: rgba(0,0,0,0.3); color: var(--text-secondary); cursor: pointer;" onclick="navigator.clipboard.writeText(this.value); alert('Copied Webhook URL!')">
-                  </div>
-                  <div class="input-group">
-                    <label for="waba-verify-token">Webhook Verification Token (Verify Token)</label>
-                    <input type="text" id="waba-verify-token" class="input-control" value="merchant_secret_token">
-                  </div>
-                  <button type="submit" class="btn" style="width: 100%; justify-content: center; height: 42px;">
-                    <i data-lucide="save"></i> Save Configuration
-                  </button>
-                </form>
-              </div>
-
-              <!-- Right Column: Meta Approved Message Templates & Verification -->
-              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1rem;">
-                <div class="panel-card-title">Approved Meta API Message Templates</div>
-                <div style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
-                  
-                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(16,185,129,0.03); border-color: rgba(16,185,129,0.15)">
-                    <div>
-                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">eid_discount_template</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Greeting discount template (Urdu/English)</p>
-                    </div>
-                    <span class="status-badge delivered" style="padding: 2px 8px; font-size: 0.7rem;">Approved</span>
-                  </div>
-
-                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(16,185,129,0.03); border-color: rgba(16,185,129,0.15)">
-                    <div>
-                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">cart_recovery_alert</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Automated recover abandoned checkouts</p>
-                    </div>
-                    <span class="status-badge delivered" style="padding: 2px 8px; font-size: 0.7rem;">Approved</span>
-                  </div>
-
-                  <div class="stat-card" style="padding: 12px; display: flex; justify-content: space-between; align-items: center; background: rgba(245,158,11,0.03); border-color: rgba(245,158,11,0.15)">
-                    <div>
-                      <h4 style="font-size: 0.85rem; margin-bottom: 2px;">order_invoice_pdf</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary);">Interactive billing receipt template</p>
-                    </div>
-                    <span class="status-badge pending" style="padding: 2px 8px; font-size: 0.7rem;">Pending Review</span>
-                  </div>
-
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; padding: 10px; background: rgba(0,0,0,0.15); border-radius: var(--radius-sm)">
-                  <i data-lucide="info" style="width: 14px; height: 14px; vertical-align: middle; margin-right: 4px; color: var(--accent-secondary)"></i>
-                  Meta Cloud API requires all customer-initiated conversations that start from outbound marketing campaigns to use officially approved pre-reviewed templates.
-                </div>
-              </div>
-
-              <!-- Column 3: Team Inbox & Operator Routing -->
-              <div class="panel-card" style="display: flex; flex-direction: column; gap: 1rem;">
-                <div class="panel-card-title">
-                  <span>Team Routing & Operators</span>
-                </div>
-                
-                <div class="input-group">
-                  <label for="routing-strategy">Routing Rules Selection</label>
-                  <select id="routing-strategy" class="input-control" onchange="changeRoutingAlgorithm(this.value)" style="background: rgba(0,0,0,0.3); border-color: var(--border-color); color: var(--text-primary);">
-                    <option value="round-robin">Round-Robin (Auto-Route)</option>
-                    <option value="manual">Manual Assignment</option>
-                  </select>
-                </div>
-                
-                <div style="font-size: 0.85rem; font-weight: 600; margin-top: 5px; color: var(--text-primary);">Active Operators</div>
-                <div id="operators-list-container" style="display: flex; flex-direction: column; gap: 10px; overflow-y: auto; flex: 1;">
-                  <!-- Loaded dynamically in merchant.js -->
-                </div>
-              </div>
-            </div>
-
-            <!-- SaaS Subscription Panel -->
-            <div class="panel-card">
-              <div class="panel-card-title">Zanji OS SaaS Subscription Plan</div>
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.25rem;">
-                
-                <!-- Starter Tier -->
-                <div class="stat-card billing-plan-card" id="plan-tier-free" style="cursor: pointer;" onclick="changeSaaSPlan('free')">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px;">Starter Plan</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary)">Ideal for micro-sellers starting out</p>
-                    </div>
-                    <span style="font-family: var(--font-heading); font-size: 1rem; font-weight: 800; color: var(--text-primary)">Free</span>
-                  </div>
-                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
-                    <li>1 Connected Phone Number</li>
-                    <li>Up to 50 Auto-Orders / Month</li>
-                    <li>Standard Customer Storefront</li>
-                    <li>Manual Broadcast Marketing Campaigns</li>
-                  </ul>
-                  <button class="btn btn-secondary btn-sm plan-select-btn" style="width: 100%; justify-content: center;" id="btn-select-free">Active Plan</button>
-                </div>
-
-                <!-- Pro Tier -->
-                <div class="stat-card billing-plan-card" id="plan-tier-pro" style="cursor: pointer;" onclick="changeSaaSPlan('pro')">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; color: var(--accent-primary)">Pro SaaS Mode</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary)">Optimized for scaling shops</p>
-                    </div>
-                    <div style="text-align: right;">
-                      <span style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--accent-primary)">$29</span>
-                      <span style="font-size: 0.7rem; color: var(--text-muted)">/mo</span>
-                    </div>
-                  </div>
-                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
-                    <li>1 Linked official WABA Connection</li>
-                    <li><strong>Unlimited Auto-Orders</strong></li>
-                    <li><strong>AI Urdu/English Voice Note Parser</strong></li>
-                    <li>Automated Cart Recovery and Broadcasts</li>
-                    <li>Direct payment integration</li>
-                  </ul>
-                  <button class="btn btn-sm plan-select-btn" style="width: 100%; justify-content: center; background: rgba(16,185,129,0.1); color: var(--accent-primary); border-color: rgba(16,185,129,0.2);" id="btn-select-pro">Upgrade to Pro</button>
-                </div>
-
-                <!-- Enterprise Tier -->
-                <div class="stat-card billing-plan-card" id="plan-tier-enterprise" style="cursor: pointer;" onclick="changeSaaSPlan('enterprise')">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
-                    <div>
-                      <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; color: var(--accent-purple)">Enterprise SaaS</h4>
-                      <p style="font-size: 0.75rem; color: var(--text-secondary)">For high-volume retail brands</p>
-                    </div>
-                    <div style="text-align: right;">
-                      <span style="font-family: var(--font-heading); font-size: 1.1rem; font-weight: 800; color: var(--accent-purple)">$99</span>
-                      <span style="font-size: 0.7rem; color: var(--text-muted)">/mo</span>
-                    </div>
-                  </div>
-                  <ul style="font-size: 0.8rem; color: var(--text-secondary); padding-left: 1rem; line-height: 1.6; margin-bottom: 1rem;">
-                    <li><strong>Multiple WABA numbers</strong> / Accounts</li>
-                    <li>Dedicated server bandwidth</li>
-                    <li>Priority AI response speeds</li>
-                    <li>Custom CRM database sync integrations</li>
-                    <li>24/7 SLA Technical Account Support</li>
-                  </ul>
-                  <button class="btn btn-sm plan-select-btn" style="width: 100%; justify-content: center; background: rgba(139,92,246,0.1); color: var(--accent-purple); border-color: rgba(139,92,246,0.2);" id="btn-select-enterprise">Subscribe Enterprise</button>
-                </div>
-
-              </div>
-            </div>
-          </div>
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <div class="feature-card" onclick="scrollToWhitelist()">
+        <div class="feature-icon-wrapper">
+          <i data-lucide="mic" style="width: 22px; height: 22px;"></i>
         </div>
-      </section>
-
-      <!-- CUSTOMER STOREFRONT TAB -->
-      <section id="storefront-tab" class="tab-content">
-        <div class="storefront-container" id="storefront-content">
-          <!-- Loading or Catalog screen loaded by storefront.js -->
-        </div>
-      </section>
-      
-    </main>
-
-    <!-- Right Panel - WhatsApp Mobile Phone Simulator -->
-    <aside class="mobile-simulator">
-      <div class="mobile-inner">
-        <!-- Island Notch -->
-        <div class="phone-island"></div>
-        
-        <!-- Status Bar -->
-        <div class="phone-status-bar">
-          <span id="simulator-time">20:05</span>
-          <div style="display: flex; align-items: center; gap: 4px;">
-            <i data-lucide="signal" style="width: 14px; height: 14px;"></i>
-            <i data-lucide="wifi" style="width: 14px; height: 14px;"></i>
-            <i data-lucide="battery" style="width: 16px; height: 16px;"></i>
-          </div>
-        </div>
-
-        <!-- WhatsApp Chat Header -->
-        <div class="wa-header">
-          <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;" onclick="switchView('merchant')">
-            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
-            <div class="wa-avatar">ZS</div>
-          </div>
-          <div class="wa-merchant-info">
-            <div class="wa-merchant-name">
-              <span id="wa-header-store-name">Zari Boutique</span>
-              <svg class="wa-verified" viewBox="0 0 24 24" width="14" height="14" style="vertical-align: middle; margin-left: 2px;">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-              </svg>
-            </div>
-            <div class="wa-merchant-status">Official Business Account</div>
-          </div>
-          <div style="display: flex; gap: 12px; opacity: 0.85;">
-            <i data-lucide="video" style="width: 18px; height: 18px;"></i>
-            <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
-            <i data-lucide="more-vertical" style="width: 18px; height: 18px;"></i>
-          </div>
-        </div>
-
-        <!-- Suggestion Action Chips -->
-        <div class="wa-quick-actions" id="wa-suggestion-chips">
-          <!-- Loaded dynamically in app.js -->
-        </div>
-
-        <!-- Chat Conversation Area -->
-        <div class="wa-body" id="wa-chat-body">
-          <!-- Loaded dynamically in whatsapp.js -->
-        </div>
-
-        <!-- Chat Input Bar -->
-        <div class="wa-input-container">
-          <i data-lucide="smile" style="color: #8696a0; cursor: pointer; width: 22px; height: 22px;"></i>
-          <i data-lucide="paperclip" style="color: #8696a0; cursor: pointer; width: 20px; height: 20px; transform: rotate(45deg);"></i>
-          <input type="text" class="wa-input-box" id="wa-chat-input" placeholder="Type a message..." onkeypress="handleWaInputKey(event)">
-          <button class="wa-mic-btn" id="wa-mic-btn" onclick="startSimulatedVoiceRecording()" style="background: none; border: none; padding: 4px; color: #8696a0; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-right: 4px;" title="Record Voice Note">
-            <i data-lucide="mic" style="width: 22px; height: 22px;"></i>
-          </button>
-          <button class="wa-send-btn" onclick="sendWaCustomerMessage()">
-            <i data-lucide="send" style="width: 16px; height: 16px; margin-left: 2px;"></i>
-          </button>
-        </div>
-
+        <h3>AI Voice-to-Order Parser</h3>
+        <p>Customers record voice notes with their order details in Urdu or English. Zanji parses items, quantities, and addresses straight into a draft invoice in 1-click.</p>
       </div>
-    </aside>
-
-  </div>
-
-  <!-- INSTAGRAM IMPORT MODAL -->
-  <div class="modal-overlay" id="instagram-import-modal">
-    <div class="modal-content" style="max-width: 480px;">
-      <div class="modal-header">
-        <h3>AI Instagram Catalog Ingestor</h3>
-        <button class="modal-close" onclick="closeModal('instagram-import-modal')">&times;</button>
+      <!-- Feature 2 -->
+      <div class="feature-card" onclick="scrollToWhitelist()">
+        <div class="feature-icon-wrapper">
+          <i data-lucide="instagram" style="width: 22px; height: 22px;"></i>
+        </div>
+        <h3>1-Click Instagram Sync</h3>
+        <p>Import your entire product catalog directly from your Instagram posts. Our crawler extracts descriptions, images, and prices dynamically into your shop catalog.</p>
       </div>
-      <form id="instagram-import-form" onsubmit="handleInstagramImportSubmit(event)">
+      <!-- Feature 3 -->
+      <div class="feature-card" onclick="scrollToWhitelist()">
+        <div class="feature-icon-wrapper">
+          <i data-lucide="shield-alert" style="width: 22px; height: 22px;"></i>
+        </div>
+        <h3>Antigravity RTO Shield</h3>
+        <p>Check buyer return histories instantly. Flag high-risk addresses and auto-send WhatsApp verification links to secure pre-payments or GPS pin drops.</p>
+      </div>
+      <!-- Feature 4 -->
+      <div class="feature-card" onclick="scrollToWhitelist()">
+        <div class="feature-icon-wrapper">
+          <i data-lucide="users" style="width: 22px; height: 22px;"></i>
+        </div>
+        <h3>Team Round-Robin Router</h3>
+        <p>Auto-allocate incoming customer threads to your active team operators. Prevent lead drop-offs with load-balanced operator chats.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Layout: Calculator and Whitelist Form -->
+  <section id="whitelist-form-section" class="split-layout" style="border-top: 1px solid rgba(255,255,255,0.03); padding-top: 5rem;">
+    <!-- Left: RTO Savings Calculator -->
+    <div class="panel-card-accent">
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="calculator" style="color: var(--accent-primary); width: 22px; height: 22px;"></i> COD Return (RTO) Savings Calculator
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; line-height: 1.4;">
+        Cash-on-Delivery return packages eat up to 20% of retail margins. Calculate how much shipping loss you can recover with the **Antigravity Shield** verification pipeline.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
         <div class="input-group">
-          <label for="ig-username">Instagram Username / Handle</label>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            <span style="color: var(--text-muted); font-weight: 600;">@</span>
-            <input type="text" id="ig-username" class="input-control" required placeholder="zari_boutique_pk" style="flex: 1;">
-          </div>
+          <label for="calc-orders">Average Monthly Orders</label>
+          <input type="number" id="calc-orders" class="input-control" value="500" oninput="calculateSavings()">
         </div>
         <div class="input-group">
-          <label for="ig-post-count">Select Import Feed Count</label>
-          <select id="ig-post-count" class="input-control">
-            <option value="3">Latest 3 Posts (Recommended)</option>
-            <option value="6">Latest 6 Posts</option>
-            <option value="9">Latest 9 Posts</option>
-          </select>
+          <label for="calc-rto-rate">Current RTO / Return Rate (%)</label>
+          <input type="number" id="calc-rto-rate" class="input-control" value="15" min="1" max="100" oninput="calculateSavings()">
+        </div>
+        <div class="input-group">
+          <label for="calc-aov">Average Order Value (PKR)</label>
+          <input type="number" id="calc-aov" class="input-control" value="3500" oninput="calculateSavings()">
+        </div>
+        <div class="input-group">
+          <label for="calc-loss-cost">RTO Shipping Loss Cost per item (PKR)</label>
+          <input type="number" id="calc-loss-cost" class="input-control" value="250" oninput="calculateSavings()">
+        </div>
+      </div>
+
+      <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem; margin-top: 2rem;">
+        <div class="calc-row">
+          <span>Returned Orders / Month:</span>
+          <span id="res-rto-orders">75</span>
+        </div>
+        <div class="calc-row">
+          <span>Stuck/Delayed Revenue:</span>
+          <span id="res-stuck-rev">PKR 262,500</span>
+        </div>
+        <div class="calc-row">
+          <span>Direct Double-Shipping Loss:</span>
+          <span id="res-shipping-loss">PKR 18,750</span>
+        </div>
+        <div class="calc-row highlight">
+          <span>Recovered Profit with Zanji:</span>
+          <span id="res-profit-saved">PKR 15,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Whitelist Signup Form -->
+    <div class="panel-card" style="padding: 2.5rem;" id="whitelist-form-card">
+      <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+        <i data-lucide="user-plus" style="color: var(--accent-primary); width: 22px; height: 22px;"></i> Join the Merchant Whitelist
+      </h3>
+      <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; line-height: 1.4;">
+        Apply for early-access whitelist onboarding. We review applications daily to provision secure WhatsApp Business APIs for verified local businesses.
+      </p>
+
+      <form id="whitelist-form" onsubmit="handleWhitelistSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div class="input-group">
+          <label for="w-biz-name">Brand / Business Name</label>
+          <input type="text" id="w-biz-name" class="input-control" required placeholder="e.g. Zari Boutique PK">
         </div>
         
-        <!-- Live AI Extraction Steps Progress -->
-        <div id="ig-progress-container" style="display: none; margin: 1.5rem 0; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
-          <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px;">
-            <span id="ig-progress-status" style="font-weight: 600; color: var(--accent-primary);">Starting AI parser...</span>
-            <span id="ig-progress-percent">0%</span>
+        <div class="input-group">
+          <label for="w-phone">WhatsApp Contact Number</label>
+          <div style="display: flex; gap: 8px;">
+            <select id="w-country-code" class="input-control" style="width: 100px; padding: 10px; font-weight: 600; text-align: center; background: rgba(0,0,0,0.2);">
+              <option value="92" selected>🇵🇰 +92</option>
+              <option value="971">🇦🇪 +971</option>
+              <option value="62">🇮🇩 +62</option>
+              <option value="234">🇳🇬 +234</option>
+              <option value="1">🇺🇸 +1</option>
+            </select>
+            <input type="tel" id="w-phone" class="input-control" required placeholder="300 1234567" style="flex: 1;">
           </div>
-          <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden;">
-            <div id="ig-progress-bar" style="width: 0%; height: 100%; background: var(--accent-primary); transition: width 0.3s ease;"></div>
-          </div>
-          <div style="margin-top: 10px; font-size: 0.75rem; color: var(--text-secondary); height: 18px; overflow: hidden;" id="ig-progress-subtext">Connecting to Instagram API...</div>
         </div>
 
-        <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('instagram-import-modal')">Cancel</button>
-          <button type="submit" class="btn" style="flex: 1;" id="ig-submit-btn"><i data-lucide="sparkles"></i> Ingest Catalog</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- ADD PRODUCT MODAL -->
-  <div class="modal-overlay" id="add-product-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Add New Catalog Item</h3>
-        <button class="modal-close" onclick="closeModal('add-product-modal')">&times;</button>
-      </div>
-      <form id="add-product-form" onsubmit="handleNewProductSubmit(event)">
         <div class="input-group">
-          <label for="p-title">Product Name</label>
-          <input type="text" id="p-title" class="input-control" required placeholder="e.g. Lawn Embroidered Suit 3pc">
-        </div>
-        <div class="input-group">
-          <label for="p-price">Price (PKR)</label>
-          <input type="number" id="p-price" class="input-control" required placeholder="e.g. 3500">
-        </div>
-        <div class="input-group">
-          <label for="p-image">Product Image URL (or select mock style)</label>
-          <select id="p-image" class="input-control">
-            <option value="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=400&q=80">Kurta (Red Linen)</option>
-            <option value="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=400&q=80">Embroidered Dress (Pastel Shawl)</option>
-            <option value="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&w=400&q=80">Casual Footwear (Khussa)</option>
-            <option value="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=400&q=80">Traditional Silk Scarf</option>
+          <label for="w-category">Shop / Business Category</label>
+          <select id="w-category" class="input-control" required style="cursor: pointer; background: rgba(0,0,0,0.2);">
+            <option value="" disabled selected>Select business area...</option>
+            <option value="Fashion">Clothing & Fashion Apparel</option>
+            <option value="Cosmetics">Cosmetics & Beauty Products</option>
+            <option value="Electronics">Electronics & Tech Accessories</option>
+            <option value="Home">Home Decor & Kitchenware</option>
+            <option value="Food">Food & Grocery Delivery</option>
+            <option value="Other">Other Retail Business</option>
           </select>
         </div>
-        <div class="input-group">
-          <label for="p-desc">Product Description</label>
-          <textarea id="p-desc" class="input-control" style="height: 80px; resize: none;" required placeholder="Describe the item fabric, sizing, colors..."></textarea>
-          <div class="ai-generator-row">
-            <button type="button" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center;" onclick="generateMockAiDescription()">
-              <i data-lucide="sparkles" style="color: var(--accent-purple); width: 14px; height: 14px;"></i> Generate AI Copy
-            </button>
-          </div>
-        </div>
-        <div class="input-group">
-          <label for="p-stock">Starting Inventory Stock</label>
-          <input type="number" id="p-stock" class="input-control" value="25" required>
-        </div>
-        <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
-          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('add-product-modal')">Cancel</button>
-          <button type="submit" class="btn" style="flex: 1;">Save Product</button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- ORDER ACTIONS / DETAILS MODAL -->
-  <div class="modal-overlay" id="order-details-modal">
-    <div class="modal-content" style="max-width: 550px;">
-      <div class="modal-header">
-        <h3>Order Details & Logistics Hub</h3>
-        <button class="modal-close" onclick="closeModal('order-details-modal')">&times;</button>
-      </div>
-      <div id="order-details-modal-content">
-        <!-- Rendered dynamically in merchant.js -->
-      </div>
-    </div>
-  </div>
-
-  <!-- BROADCAST CAMPAIGN MODAL -->
-  <div class="modal-overlay" id="create-broadcast-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Launch WhatsApp Broadcast</h3>
-        <button class="modal-close" onclick="closeModal('create-broadcast-modal')">&times;</button>
-      </div>
-      <form id="broadcast-campaign-form" onsubmit="handleBroadcastSubmit(event)">
         <div class="input-group">
-          <label for="b-name">Campaign Name</label>
-          <input type="text" id="b-name" class="input-control" required placeholder="e.g. Weekend Flash Sale">
-        </div>
-        <div class="input-group">
-          <label for="b-segment">Customer Segment Group</label>
-          <select id="b-segment" class="input-control" onchange="calculateSegmentSize(this.value)">
-            <option value="all">All Active Contacts (185 customers)</option>
-            <option value="abandoned">Abandoned Cart Users (12 customers)</option>
-            <option value="vip">VIP Repeat Shoppers (35 customers)</option>
+          <label for="w-volume">Average Monthly Sales Volume</label>
+          <select id="w-volume" class="input-control" required style="cursor: pointer; background: rgba(0,0,0,0.2);">
+            <option value="" disabled selected>Select volume range...</option>
+            <option value="Under 100">Under 100 orders / month</option>
+            <option value="100-500">100 - 500 orders / month</option>
+            <option value="500-2000">500 - 2,000 orders / month</option>
+            <option value="2000+">More than 2,000 orders / month</option>
           </select>
         </div>
-        <div class="input-group">
-          <label for="b-message">WhatsApp Broadcast Message Template (Urdu / English support)</label>
-          <textarea id="b-message" class="input-control" style="height: 120px; resize: none;" required placeholder="Salam! Our new collection is live..."></textarea>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
-            Supported variables: <code>{name}</code>, <code>{catalog_link}</code>
-          </div>
-        </div>
-        <div class="stat-card" style="padding: 10px; margin-bottom: 1.5rem; background: rgba(0,0,0,0.1)">
-          <div style="font-size: 0.8rem; color: var(--text-secondary);">Estimated Cost (Free MVP Tier):</div>
-          <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-primary);" id="broadcast-cost-estimate">0.00 PKR (Utilizing official Meta API sandbox limits)</div>
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <button type="button" class="btn btn-secondary" style="flex: 1;" onclick="closeModal('create-broadcast-modal')">Cancel</button>
-          <button type="submit" class="btn" style="flex: 1;"><i data-lucide="send"></i> Launch Campaign</button>
-        </div>
+
+        <button type="submit" class="btn" style="width: 100%; justify-content: center; height: 46px; font-size: 0.95rem; margin-top: 1rem;">
+          <i data-lucide="send"></i> Submit Whitelist Request
+        </button>
       </form>
     </div>
-  </div>
+  </section>
 
-  <!-- Bottom App Footer Info -->
-  <footer class="app-footer">
-    <div>
-      Powered by <strong>Zanji Conversational Operating System</strong>. Turning social sellers into SaaS storefronts.
-    </div>
-    <div>
-      <a href="https://github.com" target="_blank">Documentation</a> &bull; 
-      <a href="#" onclick="switchView('storefront')">Preview Storefront</a>
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 3rem 0; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.03);">
+    <p style="margin-bottom: 8px;">&copy; 2026 Zanji Technologies Inc. All rights reserved.</p>
+    <div style="display: flex; justify-content: center; gap: 1.5rem;">
+      <a href="login.html" style="color: var(--text-secondary); text-decoration: none;">Launch Portal</a>
+      <a href="https://github.com/ShaikhNidhal/zanji-whatsapp" style="color: var(--text-secondary); text-decoration: none;" target="_blank">GitHub</a>
     </div>
   </footer>
 
-  <!-- FLOATING SCENARIO DEMO TESTER -->
-  <div class="demo-tester-wrapper" id="demo-tester-wrapper">
-    <button class="demo-tester-toggle-btn" onclick="toggleDemoPanel()" title="Open Demo Tester Control Panel">
-      <i data-lucide="terminal"></i> <span>Demo Panel</span>
-      <span class="pulse-dot"></span>
-    </button>
-    <div class="demo-tester-panel" id="demo-tester-panel">
-      <div class="demo-panel-header">
-        <h4><i data-lucide="flask-conical" style="color: var(--accent-primary); width: 16px; height: 16px; vertical-align: middle;"></i> Zanji Interactive Demo Panel</h4>
-        <button class="demo-close-btn" onclick="toggleDemoPanel()">&times;</button>
-      </div>
-      <p class="demo-panel-desc">Click any scenario below to automatically run the step-by-step merchant and customer flows.</p>
-      <div class="demo-scenarios-list">
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(1)">
-          <div class="scenario-number">1</div>
-          <div class="scenario-info">
-            <strong>Storefront QR Onboarding</strong>
-            <p>Scan WhatsApp QR to auto-verify checkout session token</p>
-          </div>
-        </button>
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(2)">
-          <div class="scenario-number">2</div>
-          <div class="scenario-info">
-            <strong>Urdu Voice Note Order</strong>
-            <p>Simulate customer voice order, transcription & AI Draft Invoice</p>
-          </div>
-        </button>
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(3)">
-          <div class="scenario-number">3</div>
-          <div class="scenario-info">
-            <strong>Cart Abandonment Recovery</strong>
-            <p>Trigger automated bot discount follow-up in WhatsApp</p>
-          </div>
-        </button>
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(4)">
-          <div class="scenario-number">4</div>
-          <div class="scenario-info">
-            <strong>1-Click Instagram Catalog Import</strong>
-            <p>Launch catalog builder with AI image metadata extraction</p>
-          </div>
-        </button>
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(5)">
-          <div class="scenario-number">5</div>
-          <div class="scenario-info">
-            <strong>Launch Eid Broadcast Marketing</strong>
-            <p>Send bulk coupon discount cards to repeating buyer segments</p>
-          </div>
-        </button>
-        <button class="demo-scenario-btn" onclick="triggerDemoScenario(6)">
-          <div class="scenario-number">6</div>
-          <div class="scenario-info">
-            <strong>CTWA Ad Lead & Auto-Route</strong>
-            <p>Simulate Facebook/Instagram Ad click & auto round-robin assign</p>
-          </div>
-        </button>
-      </div>
-      <div class="demo-panel-footer">
-        Gemini Sandbox Connected: Active • Region: <span id="demo-active-region">PK</span>
-      </div>
-    </div>
-  </div>
-
   <!-- Scripts -->
-  <!-- Chart.js for premium analytics graphics (loaded via CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Main Logic Modules -->
-  <script src="locales.js?v=2.2"></script>
-  <script src="app.js?v=2.2"></script>
-  <script src="whatsapp.js?v=2.2"></script>
-  <script src="merchant.js?v=2.2"></script>
-  <script src="storefront.js?v=2.2"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      calculateSavings();
+    });
+
+    function scrollToWhitelist() {
+      const section = document.getElementById('whitelist-form-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // ROI Calculator calculations logic
+    function calculateSavings() {
+      const orders = Math.max(0, parseInt(document.getElementById('calc-orders').value) || 0);
+      const rtoRate = Math.max(0, Math.min(100, parseFloat(document.getElementById('calc-rto-rate').value) || 0));
+      const aov = Math.max(0, parseInt(document.getElementById('calc-aov').value) || 0);
+      const shippingLossCost = Math.max(0, parseInt(document.getElementById('calc-loss-cost').value) || 0);
+
+      // Calculations
+      const rtoOrdersCount = Math.round(orders * (rtoRate / 100));
+      const stuckRevenueValue = rtoOrdersCount * aov;
+      const directShippingLossValue = rtoOrdersCount * shippingLossCost;
+      // Assume Zanji's verify/prepay/GPS checklist blocks 80% of returns
+      const recoveredProfitValue = Math.round(directShippingLossValue * 0.80);
+
+      // DOM bindings
+      document.getElementById('res-rto-orders').innerText = rtoOrdersCount.toLocaleString();
+      document.getElementById('res-stuck-rev').innerText = `PKR ${stuckRevenueValue.toLocaleString()}`;
+      document.getElementById('res-shipping-loss').innerText = `PKR ${directShippingLossValue.toLocaleString()}`;
+      document.getElementById('res-profit-saved').innerText = `PKR ${recoveredProfitValue.toLocaleString()}`;
+    }
+
+    // Interactive Whitelist Form submission handler
+    function handleWhitelistSubmit(event) {
+      event.preventDefault();
+      
+      const bizName = document.getElementById('w-biz-name').value.trim();
+      const code = document.getElementById('w-country-code').value;
+      const phone = document.getElementById('w-phone').value.trim().replace(/\s+/g, '');
+      const category = document.getElementById('w-category').value;
+      const volume = document.getElementById('w-volume').value;
+
+      const signupData = {
+        bizName,
+        phone: `+${code}${phone}`,
+        category,
+        volume,
+        submittedAt: new Date().toISOString()
+      };
+
+      // Store waitlist in localStorage
+      localStorage.setItem('zanji_waitlist_signup', JSON.stringify(signupData));
+      console.log('[Zanji Landing] Saved whitelist submission data:', signupData);
+
+      // Simulate API Submission
+      const formCard = document.getElementById('whitelist-form-card');
+      const randomSpot = Math.floor(120 + Math.random() * 880);
+
+      formCard.innerHTML = `
+        <div class="success-card">
+          <div class="success-icon-wrapper">
+            <i data-lucide="check-circle-2" style="width: 36px; height: 36px;"></i>
+          </div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem;">
+            Application Submitted!
+          </h3>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; max-width: 400px; line-height: 1.5; margin-bottom: 1rem;">
+            Thank you, <strong>${bizName}</strong>. We have registered your WhatsApp number <strong>+${code} ${phone}</strong> for the waitlist verification.
+          </p>
+          
+          <div class="queue-spot-badge">
+            Waitlist Queue Spot: #${randomSpot}
+          </div>
+          
+          <p style="color: var(--text-muted); font-size: 0.75rem; line-height: 1.4; max-width: 360px;">
+            We have sent an automated verification message to your WhatsApp. Once our team reviews your business category, we will provision your dashboard sandbox access.
+          </p>
+          
+          <a href="login.html" class="btn" style="margin-top: 2rem; height: 42px;">
+            <i data-lucide="external-link"></i> Access MVP Sandbox Anyway
+          </a>
+        </div>
+      `;
+      lucide.createIcons();
+    }
+  </script>
 </body>
 </html>
