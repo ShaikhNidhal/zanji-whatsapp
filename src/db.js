@@ -49,7 +49,7 @@ const merchant_whatsapp_settings = [
     waba_id: 'WABA_MOCK_ID_99',
     phone_number_id: 'MOCK_PHONE_NUMBER_ID_XYZ',
     display_phone_number: '+923001112233',
-    webhook_verify_token: 'mock_verify_token_xyz',
+    webhook_verify_token: 'GO',
     created_at: new Date().toISOString()
   }
 ];
