@@ -75,6 +75,26 @@ webhookRouter.registerPipelineListener((eventType, data) => {
   broadcastToClients(eventType, data);
 });
 
+// Helper to serve static files safely
+function serveStaticFile(res, filePath, contentType) {
+  const fullPath = path.join(__dirname, filePath);
+  fs.readFile(fullPath, (err, content) => {
+    if (err) {
+      console.error(`[Zanji Server] Static file read error for ${filePath}:`, err);
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('File Not Found');
+    } else {
+      res.writeHead(200, {
+        'Content-Type': contentType,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type'
+      });
+      res.end(content);
+    }
+  });
+}
+
 
 // Main HTTP Server Request Router
 const server = http.createServer((req, res) => {
@@ -96,6 +116,46 @@ const server = http.createServer((req, res) => {
   if (req.method === 'GET' && pathname === '/health') {
     sendJSON(res, 200, { status: "UP", timestamp: new Date() });
     return;
+  }
+
+  // Serve static UI assets for checking on live link
+  if (req.method === 'GET') {
+    if (pathname === '/' || pathname === '/index.html') {
+      serveStaticFile(res, 'index.html', 'text/html');
+      return;
+    }
+    if (pathname === '/login.html') {
+      serveStaticFile(res, 'login.html', 'text/html');
+      return;
+    }
+    if (pathname === '/style.css') {
+      serveStaticFile(res, 'style.css', 'text/css');
+      return;
+    }
+    if (pathname === '/app.js') {
+      serveStaticFile(res, 'app.js', 'application/javascript');
+      return;
+    }
+    if (pathname === '/whatsapp.js') {
+      serveStaticFile(res, 'whatsapp.js', 'application/javascript');
+      return;
+    }
+    if (pathname === '/merchant.js') {
+      serveStaticFile(res, 'merchant.js', 'application/javascript');
+      return;
+    }
+    if (pathname === '/storefront.js') {
+      serveStaticFile(res, 'storefront.js', 'application/javascript');
+      return;
+    }
+    if (pathname === '/locales.js') {
+      serveStaticFile(res, 'locales.js', 'application/javascript');
+      return;
+    }
+    if (pathname === '/mock_voice.ogg') {
+      serveStaticFile(res, 'mock_voice.ogg', 'audio/ogg');
+      return;
+    }
   }
 
   // 1. Multi-Tenant Meta API Webhook Verification (GET)

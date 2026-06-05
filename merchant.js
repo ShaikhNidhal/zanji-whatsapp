@@ -4,7 +4,15 @@
 
 let salesChartInstance = null;
 
+const GATEWAY_URL = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+  ? 'http://localhost:3000'
+  : window.location.origin;
+
 function initMerchant() {
+  const webhookUrlInput = document.getElementById('waba-webhook-url');
+  if (webhookUrlInput) {
+    webhookUrlInput.value = `${GATEWAY_URL}/whatsapp/webhook`;
+  }
   renderMerchantDashboard();
   renderMerchantCatalog();
   renderMerchantOrders();
@@ -484,7 +492,7 @@ function handleBroadcastSubmit(event) {
   };
 
   // POST campaign to server proxy for real API sending (if credentials present)
-  fetch('http://localhost:3000/api/send-message', {
+  fetch(`${GATEWAY_URL}/api/send-message`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -773,7 +781,7 @@ function sendInboxMerchantReply() {
     appendWaMessage('merchant', text);
 
     // Call server API proxy to send real WABA message
-    fetch('http://localhost:3000/api/send-message', {
+    fetch(`${GATEWAY_URL}/api/send-message`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -1006,8 +1014,8 @@ function initServerSentEvents() {
     sseEventSource.close();
   }
   
-  console.log('[Zanji Client] Opening Server-Sent Events stream connection to port 3000...');
-  sseEventSource = new EventSource('http://localhost:3000/events');
+  console.log(`[Zanji Client] Opening Server-Sent Events stream connection to ${GATEWAY_URL}...`);
+  sseEventSource = new EventSource(`${GATEWAY_URL}/events`);
   
   // 1. Listen for global configuration syncs
   sseEventSource.addEventListener('config_sync', (e) => {
@@ -1189,7 +1197,7 @@ function saveWabaSettings(event) {
   
   console.log('[Zanji Client] Sending settings updates to server...');
   
-  fetch('http://localhost:3000/api/settings', {
+  fetch(`${GATEWAY_URL}/api/settings`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(updatedConfig)
@@ -1267,7 +1275,7 @@ function updateWabaSettingsUI(config) {
 function changeSaaSPlan(planCode) {
   console.log(`[Zanji Client] Requesting plan upgrade to: ${planCode}`);
   
-  fetch('http://localhost:3000/api/settings', {
+  fetch(`${GATEWAY_URL}/api/settings`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ subscription: planCode })
@@ -1458,7 +1466,7 @@ function simulateIncomingAdLead() {
   };
   
   // Call local server endpoint to simulate this webhook payload
-  fetch('http://localhost:3000/api/simulate-incoming', {
+  fetch(`${GATEWAY_URL}/api/simulate-incoming`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
