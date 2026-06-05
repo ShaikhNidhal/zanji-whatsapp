@@ -46,9 +46,9 @@ const merchant_whatsapp_settings = [
   {
     id: 'mock-tenant-id-xyz',
     organization_id: 'org-pk-karachi-001',
-    waba_id: 'WABA_MOCK_ID_99',
-    phone_number_id: 'MOCK_PHONE_NUMBER_ID_XYZ',
-    display_phone_number: '+923001112233',
+    waba_id: '1855564725361287',
+    phone_number_id: '1128207817041218',
+    display_phone_number: '+15556680064',
     webhook_verify_token: 'GO',
     created_at: new Date().toISOString()
   }
