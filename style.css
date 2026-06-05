@@ -1649,6 +1649,26 @@ footer.app-footer {
   color: var(--accent-primary) !important;
 }
 
+/* Merchant Navigation Bar Links Styling */
+.merchant-nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.merchant-nav-link:hover {
+  color: var(--text-primary);
+}
+
+.merchant-nav-link.active {
+  color: var(--accent-primary) !important;
+  border-bottom: 2px solid var(--accent-primary) !important;
+}
+
 
 
 
