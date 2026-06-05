@@ -105,10 +105,13 @@ const users = [
 
 // ── Table Registry ────────────────────────────────────────────────────
 
+const waitlist = [];
+
 const tables = {
   merchant_whatsapp_settings,
   orders,
-  users
+  users,
+  waitlist
 };
 
 // ── Query Engine ──────────────────────────────────────────────────────

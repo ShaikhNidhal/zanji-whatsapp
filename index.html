@@ -531,6 +531,16 @@
       localStorage.setItem('zanji_waitlist_signup', JSON.stringify(signupData));
       console.log('[Zanji Landing] Saved whitelist submission data:', signupData);
 
+      // Send to backend API
+      fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(signupData)
+      })
+      .then(res => res.json())
+      .then(data => console.log('[Zanji Landing] Saved to backend waitlist:', data))
+      .catch(err => console.error('[Zanji Landing] Failed to save to backend waitlist:', err));
+
       // Simulate API Submission
       const formCard = document.getElementById('whitelist-form-card');
       const randomSpot = Math.floor(120 + Math.random() * 880);

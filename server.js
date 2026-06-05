@@ -285,6 +285,44 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 4b. Waitlist Signups Endpoint (POST)
+  if (req.method === 'POST' && pathname === '/api/waitlist') {
+    let body = '';
+    req.on('data', chunk => { body += chunk; });
+    req.on('end', () => {
+      try {
+        const signup = JSON.parse(body);
+        const db = require('./src/db');
+        const newSignup = {
+          id: require('crypto').randomUUID(),
+          bizName: signup.bizName,
+          phone: signup.phone,
+          category: signup.category,
+          volume: signup.volume,
+          submittedAt: signup.submittedAt || new Date().toISOString()
+        };
+        db._tables.waitlist.push(newSignup);
+        console.log('[Zanji Server] 📝 New waitlist application registered:', newSignup);
+        
+        // Sync with dashboard
+        broadcastToClients('waitlist_sync', newSignup);
+        
+        sendJSON(res, 201, { success: true, signup: newSignup });
+      } catch (err) {
+        console.error('[Zanji Server] Error parsing waitlist body:', err);
+        sendJSON(res, 400, { error: 'Failed to process waitlist signup' });
+      }
+    });
+    return;
+  }
+
+  // 4c. Fetch Waitlist Signups Endpoint (GET)
+  if (req.method === 'GET' && pathname === '/api/waitlist') {
+    const db = require('./src/db');
+    sendJSON(res, 200, { success: true, waitlist: db._tables.waitlist });
+    return;
+  }
+
   // 5. Proxy outgoing Meta WABA send messages endpoint (POST)
   if (req.method === 'POST' && pathname === '/api/send-message') {
     let body = '';

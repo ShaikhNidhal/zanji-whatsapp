@@ -1096,6 +1096,18 @@ function initServerSentEvents() {
       console.error('[Zanji Client] Error handling whatsapp_pipeline_complete:', err);
     }
   });
+
+  // 4. Listen for real-time waitlist syncs from the server
+  sseEventSource.addEventListener('waitlist_sync', (e) => {
+    try {
+      console.log('[Zanji Client] Received real-time waitlist update:', e.data);
+      if (typeof fetchWaitlistApplications === 'function') {
+        fetchWaitlistApplications();
+      }
+    } catch (err) {
+      console.error('[Zanji Client] Error handling waitlist sync:', err);
+    }
+  });
   
   sseEventSource.onerror = (err) => {
     console.warn('[Zanji Client] EventSource connection failed. Gateway server offline.');
@@ -1121,6 +1133,10 @@ function loadWabaSettings() {
   const strategyEl = document.getElementById('routing-strategy');
   if (strategyEl) strategyEl.value = ZanjiState.routingAlgorithm || 'round-robin';
   renderOperatorsSettingsList();
+  
+  if (typeof fetchWaitlistApplications === 'function') {
+    fetchWaitlistApplications();
+  }
   
   updateWabaSettingsUI(config);
 }
@@ -1534,6 +1550,65 @@ function renderOrderCard(chatThread) {
             <p class="text-xs font-medium text-indigo-600 mt-2">${actionAlert}</p>
         </div>
     `;
+}
+
+// Fetch Waitlist Applications from backend and render in the settings table
+function fetchWaitlistApplications() {
+  const tableBody = document.getElementById('waitlist-table-body');
+  if (!tableBody) return;
+
+  fetch('/api/waitlist')
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success || !data.waitlist || data.waitlist.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td colspan="6" style="padding: 20px; text-align: center; color: var(--text-muted);">
+              No waitlist applications registered yet.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tableBody.innerHTML = '';
+      data.waitlist.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid var(--border-color)';
+        
+        // Localized formatted date
+        const timeStr = item.submittedAt ? new Date(item.submittedAt).toLocaleString() : 'N/A';
+
+        tr.innerHTML = `
+          <td style="padding: 12px; font-weight: 600; color: #fff;">${item.bizName}</td>
+          <td style="padding: 12px; font-family: monospace;">${item.phone}</td>
+          <td style="padding: 12px;">${item.category}</td>
+          <td style="padding: 12px; color: var(--accent-orange);">${item.volume}</td>
+          <td style="padding: 12px; color: var(--text-secondary); font-size: 0.8rem;">${timeStr}</td>
+          <td style="padding: 12px; text-align: right;">
+            <button class="btn btn-secondary btn-sm" style="color: var(--accent-primary) !important; border-color: rgba(16,185,129,0.2); font-size: 0.75rem; padding: 4px 10px;" onclick="approveWaitlistApplication('${item.id}', '${item.bizName}')">
+              Approve
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    })
+    .catch(err => {
+      console.error('[Zanji Client] Failed to fetch waitlist applications:', err);
+      tableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="padding: 20px; text-align: center; color: var(--accent-danger);">
+            Failed to connect to API Gateway server.
+          </td>
+        </tr>
+      `;
+    });
+}
+
+// Simulated waitlist application approval
+function approveWaitlistApplication(id, bizName) {
+  alert(`Waitlist application for "${bizName}" approved! Sandbox tenant accounts provisioned.`);
 }
 
 
